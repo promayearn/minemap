@@ -6,6 +6,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name = "MyEditTextTheme">
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+        <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <!--<item name="colorControlHighlight">#FF3D00</item>-->
     </style>
 
 </resources>

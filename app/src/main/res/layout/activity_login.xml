@@ -1,0 +1,101 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:paddingTop="40dp">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:id="@+id/linearLayout">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_email"
+                android:textSize="30sp"
+                android:theme="@style/MyEditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/hint_email" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_password"
+                android:textSize="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:theme="@style/MyEditTextTheme"
+                android:hint="@string/hint_password" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linearLayout2"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <Button
+                    android:id="@+id/btn_signup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/btn_sign_up"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center_horizontal|center"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/registerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_gravity="center_horizontal|center"
+                    android:text="Register"/>
+            </LinearLayout>
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
