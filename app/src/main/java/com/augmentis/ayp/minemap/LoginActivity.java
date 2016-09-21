@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Drawable logo = ResourcesCompat
-                .getDrawable(getResources(), R.drawable.mapicon, null);
+                .getDrawable(getResources(), R.drawable.logo, null);
 
         imgLogo = (ImageView) findViewById(R.id.imageView);
         imgLogo.setImageDrawable(logo);

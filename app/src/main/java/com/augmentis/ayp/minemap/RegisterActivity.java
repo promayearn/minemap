@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -47,7 +46,5 @@ public class RegisterActivity extends AppCompatActivity {
         inputLayoutConfirm = (TextInputLayout) findViewById(R.id.input_layout_confirm);
 
         btnRegister = (Button) findViewById(R.id.btn_register);
-
-
     }
 }
