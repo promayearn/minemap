@@ -5,5 +5,6 @@
     <color name="colorPrimaryDark">#616161</color>
     <color name="colorAccent">#00ACC1</color>
     <color name="colorControlActivated">#00ACC1</color>
+    <color name="white_gray">#F3F2F2</color>
 
 </resources>
