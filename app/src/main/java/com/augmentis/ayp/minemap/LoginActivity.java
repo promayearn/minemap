@@ -14,8 +14,7 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText inputName,
-            inputEmail,
+    private EditText inputEmail,
             inputPassword;
 
     private TextInputLayout inputLayoutName,

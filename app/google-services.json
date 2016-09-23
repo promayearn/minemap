@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "252545057792",
+    "firebase_url": "https://minemap-3fed2.firebaseio.com",
+    "project_id": "minemap-3fed2",
+    "storage_bucket": "minemap-3fed2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252545057792:android:31de001ae5193ccd",
+        "android_client_info": {
+          "package_name": "com.augmentis.ayp.minemap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252545057792-kkq32qckgqer02gl9ipoa4cafi32605a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.augmentis.ayp.minemap",
+            "certificate_hash": "8670730E950385B11D4FBBFDC945611EB205D7FD"
+          }
+        },
+        {
+          "client_id": "252545057792-kv8eiqipqcps67aq5oltrlqaa5h499n3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrR_fF10pnG69zJc_qLyCcLRA27kJ68GE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252545057792-kv8eiqipqcps67aq5oltrlqaa5h499n3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
