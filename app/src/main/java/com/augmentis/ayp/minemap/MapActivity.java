@@ -186,9 +186,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.save_btn:
-                Toast.makeText(this, "Btn Click", Toast.LENGTH_SHORT).show();
-                break;
         }
     }
 
