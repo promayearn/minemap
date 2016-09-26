@@ -1,5 +1,6 @@
 package com.augmentis.ayp.minemap;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.StrictMode;
 import android.support.design.widget.TextInputLayout;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -202,7 +204,21 @@ public class RegisterActivity extends AppCompatActivity {
         name = inputName.getText().toString();
         email = inputEmail.getText().toString();
 
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
+
+        String strURL = "http://minemap.hol.es/register.php?name="+name+"&email="+email+"&password="+password;
+        JsonHttp jsonHttp = new JsonHttp();
+        String strJson = jsonHttp.getJSONUrl(strURL);
+        Log.e("Update : ",strJson);
+
+        Toast.makeText(this, "Ordering successfully", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(i);
     }
 }
 
