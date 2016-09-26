@@ -4,7 +4,7 @@
     <string name="title_activity_register">Register</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="btn_sign_up">Sign Up</string>
+    <string name="btn_sign_in">Sign-In</string>
 
     <string name="err_msg_name">Enter your name</string>
     <string name="err_msg_email">Enter valid email address</string>

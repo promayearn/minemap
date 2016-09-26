@@ -24,7 +24,7 @@ import java.net.URL;
 
 public class JsonHttp {
 
-    public static String makeHttpRequest(String url){
+    public static String makeHttpRequest(String url) {
         String strResult = "";
 
         try {
@@ -42,21 +42,22 @@ public class JsonHttp {
     }
 
 
-    public static String readStream(InputStream in){
+    public static String readStream(InputStream in) {
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
 
         reader = new BufferedReader(new InputStreamReader(in));
         String line;
         try {
-            while ((line = reader.readLine()) != null);{
+            while ((line = reader.readLine()) != null) ;
+            {
                 builder.append(line + "\n");
 
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(reader != null){
+        } finally {
+            if (reader != null) {
                 try {
                     reader.close();
 

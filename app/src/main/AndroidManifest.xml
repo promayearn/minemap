@@ -56,7 +56,8 @@
             android:parentActivityName=".LoginActivity">
 
         </activity>
-        <activity android:name=".LocationDescription"
+        <activity
+            android:name=".LocationDescription"
             android:label="@string/location_description">
 
         </activity>

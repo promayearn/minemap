@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
             inputLayoutEmail,
             inputLayoutPassword;
 
-    private Button btnSignUp;
+    private Button btnSignIn;
     private ImageView imgLogo;
     private TextView tvRegis;
     private String email;
@@ -49,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail = (EditText) findViewById(R.id.input_email);
         inputPassword = (EditText) findViewById(R.id.input_password);
 
-        btnSignUp = (Button) findViewById(R.id.btn_signup);
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        btnSignIn = (Button) findViewById(R.id.btn_signin);
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendToDatabase();
@@ -67,17 +67,16 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void sendToDatabase(){
+    public void sendToDatabase() {
         email = inputEmail.getText().toString();
         password = inputPassword.getText().toString();
 
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
-        String url = "http://minemap.hol.es/login.php?email="+email+"&password="+password;
+        String url = "http://minemap.hol.es/login.php?email=" + email + "&password=" + password;
 
         JsonHttp jsonHttp = new JsonHttp();
         String strJson = jsonHttp.getJSONUrl(url);
@@ -86,12 +85,12 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject json = new JSONObject(strJson);
             String success = json.getString("status");
 
-            if (success.equals("OK") == true){
+            if (success.equals("OK") == true) {
                 Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, MapActivity.class);
                 startActivity(intent);
-            }else {
-                if(success.equals("NODATA") == true){
+            } else {
+                if (success.equals("NODATA") == true) {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
                 }
             }

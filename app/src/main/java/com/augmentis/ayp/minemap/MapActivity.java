@@ -45,7 +45,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private GoogleApiClient mGoogleApiClient;
 
     private TextView mLatLngTextView;
-    private Button mSaveButton;
     private LatLng latLng;
     private double lat;
     private double lng;
@@ -61,9 +60,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
-
-        mSaveButton = (Button) findViewById(R.id.save_btn);
-        mSaveButton.setOnClickListener(this);
     }
 
     /**
@@ -208,5 +204,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+    }
 }

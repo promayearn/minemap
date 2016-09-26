@@ -18,12 +18,4 @@
         android:layout_height="wrap_content"
         android:text="Get LatLng" />
 
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Save" />
-
 </RelativeLayout>

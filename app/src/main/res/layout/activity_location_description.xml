@@ -9,12 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical"
         android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:paddingRight="25dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,31 +74,31 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:layout_height="100dp">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:text="@string/hint_des"
-                android:textSize="25sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView" />
+                android:textSize="25sp" />
 
             <EditText
+                android:id="@+id/input_des"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:theme="@style/MyEditTextTheme"
-                android:textSize="25sp"
-                android:ems="10"
-                android:id="@+id/input_des"
+                android:layout_marginBottom="20dp"
                 android:background="@color/white_gray"
-                android:layout_marginBottom="20dp"/>
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:textSize="25sp"
+                android:theme="@style/MyEditTextTheme" />
 
 
-            <include layout="@layout/photo_item"/>
+            <include layout="@layout/photo_item" />
 
         </LinearLayout>
 

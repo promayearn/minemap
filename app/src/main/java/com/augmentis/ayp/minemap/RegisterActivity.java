@@ -77,20 +77,20 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // validate Form
-    public void submitForm(){
-        if(!validateName()){
+    public void submitForm() {
+        if (!validateName()) {
             return;
         }
-        if(!validateEmail()){
+        if (!validateEmail()) {
             return;
         }
-        if(!validatePassword()){
+        if (!validatePassword()) {
             return;
         }
-        if(!validateConfirm()){
+        if (!validateConfirm()) {
             return;
         }
-        if(!checkPassword()){
+        if (!checkPassword()) {
             return;
         }
 
@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public boolean validateName(){
+    public boolean validateName() {
         if (inputName.getText().toString().trim().isEmpty()) {
             inputLayoutName.setError(getString(R.string.err_msg_name));
 //            requestFocus(inputName);
@@ -111,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean validateEmail(){
+    public boolean validateEmail() {
         String email = inputEmail.getText().toString().trim();
 
         if (email.isEmpty() || !isValidEmail(email)) {
@@ -125,38 +125,38 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean validatePassword(){
-        if(inputPasswordOne.getText().toString().trim().isEmpty()){
+    public boolean validatePassword() {
+        if (inputPasswordOne.getText().toString().trim().isEmpty()) {
             inputLayoutPassword.setError(getString(R.string.err_msg_password));
             return false;
-        }else {
+        } else {
             inputLayoutPassword.setErrorEnabled(false);
         }
         return true;
     }
 
-    public boolean validateConfirm(){
-        if(inputPasswordTwo.getText().toString().trim().isEmpty()){
+    public boolean validateConfirm() {
+        if (inputPasswordTwo.getText().toString().trim().isEmpty()) {
             inputLayoutConfirm.setError(getString(R.string.err_msg_confirm));
             return false;
-        }else {
+        } else {
             inputLayoutConfirm.setErrorEnabled(false);
         }
         return true;
     }
 
-    public boolean checkPassword(){
+    public boolean checkPassword() {
         password = inputPasswordOne.getText().toString();
         confirmPassword = inputPasswordTwo.getText().toString();
 
-        if(password.equals(confirmPassword)){
+        if (password.equals(confirmPassword)) {
             Log.d(TAG, "Correct Password !");
-        }else {
+        } else {
             Log.d(TAG, " Incorrect Password !!!!");
             return false;
         }
 
-       return true;
+        return true;
     }
 
     private static boolean isValidEmail(String email) {
@@ -164,14 +164,14 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-   public class MyTextWatcher implements TextWatcher{
-       private View view;
+    public class MyTextWatcher implements TextWatcher {
+        private View view;
 
-       private MyTextWatcher(View view) {
-           this.view = view;
-       }
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
 
-       @Override
+        @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
         }
@@ -200,21 +200,20 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public void sendToDatabase(){
+    public void sendToDatabase() {
         name = inputName.getText().toString();
         email = inputEmail.getText().toString();
 
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
 
-        String strURL = "http://minemap.hol.es/register.php?name="+name+"&email="+email+"&password="+password;
+        String strURL = "http://minemap.hol.es/register.php?name=" + name + "&email=" + email + "&password=" + password;
         JsonHttp jsonHttp = new JsonHttp();
         String strJson = jsonHttp.getJSONUrl(strURL);
-        Log.e("Update : ",strJson);
+        Log.e("Update : ", strJson);
 
         Toast.makeText(this, "Ordering successfully", Toast.LENGTH_LONG).show();
         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
