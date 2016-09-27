@@ -2,6 +2,7 @@ package com.augmentis.ayp.minemap;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.res.ResourcesCompat;
@@ -16,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.text.TextUtils;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String confirmPassword;
     private String name;
     private String email;
+    public String statusUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         Log.d(TAG, "submit form");
+        checkPassword();
         sendToDatabase();
 
     }
@@ -152,6 +158,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (password.equals(confirmPassword)) {
             Log.d(TAG, "Correct Password !");
         } else {
+            Toast.makeText(getApplicationContext(),"Incorrect Confirm Password", Toast.LENGTH_LONG).show();
             Log.d(TAG, " Incorrect Password !!!!");
             return false;
         }
@@ -193,9 +200,9 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.input_password:
                     validatePassword();
                     break;
-                case R.id.input_confirm:
-                    checkPassword();
-                    break;
+//                case R.id.input_confirm:
+//                    checkPassword();
+//                    break;
             }
         }
     }
@@ -204,20 +211,36 @@ public class RegisterActivity extends AppCompatActivity {
         name = inputName.getText().toString();
         email = inputEmail.getText().toString();
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        new sendToBackground().execute(name, email, password);
+    }
+
+    public class sendToBackground extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            name = strings[0];
+            email = strings[1];
+            password = strings[2];
+
+            String strURL = "http://minemap.hol.es/register.php?name=" + name + "&email=" + email + "&password=" + password;
+
+            JsonHttp jsonHttp = new JsonHttp();
+            String strJson = jsonHttp.getJSONUrl(strURL);
+            statusUrl = strJson;
+            Log.e("Update : ", strJson);
+
+            return statusUrl;
         }
 
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
-        String strURL = "http://minemap.hol.es/register.php?name=" + name + "&email=" + email + "&password=" + password;
-        JsonHttp jsonHttp = new JsonHttp();
-        String strJson = jsonHttp.getJSONUrl(strURL);
-        Log.e("Update : ", strJson);
+                Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
 
-        Toast.makeText(this, "Ordering successfully", Toast.LENGTH_LONG).show();
-        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-        startActivity(i);
+        }
     }
 }
 
