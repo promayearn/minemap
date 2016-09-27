@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 
 public class RegisterActivity extends AppCompatActivity {
+
     private static final String TAG = "RegisterActivity";
 
     private EditText inputName,

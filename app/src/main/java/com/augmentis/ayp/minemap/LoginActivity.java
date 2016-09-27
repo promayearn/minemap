@@ -3,7 +3,6 @@ package com.augmentis.ayp.minemap;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static String TAG = "LoginActivity";
 
     private EditText inputEmail,
             inputPassword;
@@ -74,35 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         password = inputPassword.getText().toString();
 
         new sendToBackground().execute(email, password);
-//
-//        if (android.os.Build.VERSION.SDK_INT > 9) {
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
-//        }
-//
-//        String url = "http://minemap.hol.es/login.php?email=" + email + "&password=" + password;
-//
-//        JsonHttp jsonHttp = new JsonHttp();
-//        String strJson = jsonHttp.getJSONUrl(url);
-//
-//        try {
-//            JSONObject json = new JSONObject(strJson);
-//            String success = json.getString("status");
-//
-//            if (success.equals("OK") == true) {
-//                Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
-//                startActivity(intent);
-//            } else {
-//                if (success.equals("NODATA") == true) {
-//                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     public class sendToBackground extends AsyncTask<String, String, String>{
@@ -143,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (s.equals("OK") == true) {
                 Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MapMainActivity.class);
                 startActivity(intent);
             } else {
                 if (s.equals("NODATA") == true) {

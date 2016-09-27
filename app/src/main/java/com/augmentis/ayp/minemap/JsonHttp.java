@@ -24,6 +24,8 @@ import java.net.URL;
 
 public class JsonHttp {
 
+    private static String TAG = "JsonHttp";
+
     public static String makeHttpRequest(String url) {
         String strResult = "";
 

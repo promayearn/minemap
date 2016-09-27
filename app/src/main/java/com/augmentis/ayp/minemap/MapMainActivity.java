@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -45,26 +45,23 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
+public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, GoogleMap.OnMapClickListener, View.OnClickListener {
 
-    private static final String TAG = "MapActivity";
+    private static final String TAG = "MapMainActivity";
     private static final int REQUEST_ACCESS_FINE_LOCATION = 0;
     private static final CharSequence[] MAP_TYPE_ITEMS =
             {"Road Map", "Hybrid", "Satellite", "Terrain"};
 
-    private GoogleMap mMap;
+    private GoogleMap mGoogleMap;
     private UiSettings mUiSettings;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
+    private FloatingActionButton fab;
 
-    private TextView mLatLngTextView;
     private LatLng latLng;
-    private double lat;
-    private double lng;
-    private Marker marker;
     private String mSearchKey;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -76,16 +73,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_map);
-        mLatLngTextView = (TextView) findViewById(R.id.lat_lng_on_touch);
+        setContentView(R.layout.activity_map_main);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapMainActivity.this, MapRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map_fragment);
+                .findFragmentById(R.id.map_main_fragment);
         mapFragment.getMapAsync(this);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
     }
 
     /**
@@ -100,15 +106,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        mMap = googleMap;
+        mGoogleMap = googleMap;
 
-        mMap = googleMap;
-        mUiSettings = mMap.getUiSettings(); // set ui about map --> traffic building
-
+        mGoogleMap = googleMap;
+        mUiSettings = mGoogleMap.getUiSettings(); // set ui about map --> traffic building
         //set Map Type
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        mMap.setOnMapClickListener(this);
+        mGoogleMap.setOnMapClickListener(this);
         buildGoogleApiClient();
 
         mGoogleApiClient.connect();
@@ -123,26 +128,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             return;
         }
         //current location button
-        mMap.setMyLocationEnabled(true);
+        mGoogleMap.setMyLocationEnabled(true);
         //show traffic
-        mMap.setTrafficEnabled(true);
+        mGoogleMap.setTrafficEnabled(true);
         //show building
-        mMap.setBuildingsEnabled(true);
+        mGoogleMap.setBuildingsEnabled(true);
         //compass
         mUiSettings.setCompassEnabled(true);
 
         mUiSettings.setMapToolbarEnabled(true);
 
-        mMap.addMarker(addMarkerToGoogleMap(24, 13.721256, 100.530055));
-        mMap.addMarker(addMarkerToGoogleMap(17, 13.729769, 100.537156));
-        mMap.addMarker(addMarkerToGoogleMap(1, 13.688138, 100.749261));
-        mMap.addMarker(addMarkerToGoogleMap(11, 13.765903, 100.538376));
+        mGoogleMap.addMarker(addMarkerToGoogleMap(24, 13.721256, 100.530055));
+        mGoogleMap.addMarker(addMarkerToGoogleMap(17, 13.729769, 100.537156));
+        mGoogleMap.addMarker(addMarkerToGoogleMap(1, 13.688138, 100.749261));
+        mGoogleMap.addMarker(addMarkerToGoogleMap(11, 13.765903, 100.538376));
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        Intent i = new Intent(this, MapActivity.class);
+        Intent i = new Intent(this, MapMainActivity.class);
         if (requestCode == REQUEST_ACCESS_FINE_LOCATION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startActivity(i);
@@ -195,26 +200,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng).zoom(15).build();
 
-        mMap.animateCamera(CameraUpdateFactory
+        mGoogleMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
-
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        mLatLngTextView.setText("Tapped, Point : " + latLng);
-        lat = latLng.latitude;
-        lng = latLng.longitude;
-        if (marker != null) {
-            marker.remove();
-        }
-        //add marker on same position of tapped
-        marker = mMap.addMarker(new MarkerOptions()
-                //marker option
-                .title("Place")
-                .snippet("Here?")
-                .position(new LatLng(latLng.latitude, latLng.longitude))
-                .draggable(true).visible(true));
     }
 
     @Override
@@ -275,7 +266,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         builder.setTitle(fDialogTitle);
 
         // Find the current map type to pre-check the item representing the current state.
-        int checkItem = mMap.getMapType() - 1;
+        int checkItem = mGoogleMap.getMapType() - 1;
 
         // Add an OnClickListener to the dialog, so that the selection will be handled.
         builder.setSingleChoiceItems(
@@ -289,16 +280,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         // Perform an action depending on which item was selected.
                         switch (item) {
                             case 1:
-                                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                                mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                                 break;
                             case 2:
-                                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                                mGoogleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
                                 break;
                             case 3:
-                                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                                mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                                 break;
                             default:
-                                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                         }
                         dialog.dismiss();
                     }
@@ -332,8 +323,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(latLng).zoom(16).build();
 
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+            mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }
     }
 

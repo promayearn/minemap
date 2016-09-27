@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 public class LocationDescription extends AppCompatActivity {
 
+    private static String TAG = "LocationDescription";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
