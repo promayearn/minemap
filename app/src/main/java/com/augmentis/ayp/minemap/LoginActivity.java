@@ -2,6 +2,7 @@ package com.augmentis.ayp.minemap;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.res.ResourcesCompat;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvRegis;
     private String email;
     private String password;
+    public String statusUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,33 +73,84 @@ public class LoginActivity extends AppCompatActivity {
         email = inputEmail.getText().toString();
         password = inputPassword.getText().toString();
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+        new sendToBackground().execute(email, password);
+//
+//        if (android.os.Build.VERSION.SDK_INT > 9) {
+//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//            StrictMode.setThreadPolicy(policy);
+//        }
+//
+//        String url = "http://minemap.hol.es/login.php?email=" + email + "&password=" + password;
+//
+//        JsonHttp jsonHttp = new JsonHttp();
+//        String strJson = jsonHttp.getJSONUrl(url);
+//
+//        try {
+//            JSONObject json = new JSONObject(strJson);
+//            String success = json.getString("status");
+//
+//            if (success.equals("OK") == true) {
+//                Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+//                startActivity(intent);
+//            } else {
+//                if (success.equals("NODATA") == true) {
+//                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+    }
+
+    public class sendToBackground extends AsyncTask<String, String, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            email = strings[0];
+            password = strings[1];
+
+            String url = "http://minemap.hol.es/login.php?email=" + email + "&password=" + password;
+
+
+            JsonHttp jsonHttp = new JsonHttp();
+            String strJson = jsonHttp.getJSONUrl(url);
+
+            try {
+                JSONObject json = new JSONObject(strJson);
+                String success = json.getString("status");
+
+                if (success.equals("OK") == true) {
+                    statusUrl = "OK";
+                } else {
+                    if (success.equals("NODATA") == true) {
+                       statusUrl = "NODATA";
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return statusUrl;
         }
 
-        String url = "http://minemap.hol.es/login.php?email=" + email + "&password=" + password;
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
 
-        JsonHttp jsonHttp = new JsonHttp();
-        String strJson = jsonHttp.getJSONUrl(url);
-
-        try {
-            JSONObject json = new JSONObject(strJson);
-            String success = json.getString("status");
-
-            if (success.equals("OK") == true) {
+            if (s.equals("OK") == true) {
                 Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, MapActivity.class);
                 startActivity(intent);
             } else {
-                if (success.equals("NODATA") == true) {
+                if (s.equals("NODATA") == true) {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
                 }
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-
     }
 }

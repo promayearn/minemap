@@ -77,7 +77,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap = googleMap;
-        mUiSettings = mMap.getUiSettings();
+        mUiSettings = mMap.getUiSettings(); // set ui about map --> traffic building
+
         //set Map Type
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
