@@ -126,6 +126,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.setBuildingsEnabled(true);
         //compass
         mUiSettings.setCompassEnabled(true);
+
+        mUiSettings.setMapToolbarEnabled(true);
     }
 
     @Override
@@ -270,7 +272,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Address address = addressList.get(0);
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
             CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(latLng).zoom(18).build();
+                    .target(latLng).zoom(16).build();
 
             mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
