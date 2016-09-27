@@ -14,9 +14,9 @@
     <string name="btn_register">Register</string>
     <string name="hint_confirm">Confirm</string>
     <string name="hint_name">Name</string>
-    <string name="add">Add</string>
+    <string name="filter">Filter</string>
     <string name="search">Search</string>
-    <string name="clear_search">Clear-Search</string>
+    <string name="map_type">Change map type</string>
     <string name="btn_save">Save</string>
     <string name="location_description">Location Description</string>
     <string name="hint_date">Date</string>

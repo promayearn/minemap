@@ -1,6 +1,7 @@
 package com.augmentis.ayp.minemap;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -50,6 +52,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private static final String TAG = "MapActivity";
     private static final int REQUEST_ACCESS_FINE_LOCATION = 0;
+    private static final CharSequence[] MAP_TYPE_ITEMS =
+            {"Road Map", "Hybrid", "Satellite", "Terrain"};
 
     private GoogleMap mMap;
     private UiSettings mUiSettings;
@@ -128,6 +132,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mUiSettings.setCompassEnabled(true);
 
         mUiSettings.setMapToolbarEnabled(true);
+
+        mMap.addMarker(addMarkerToGoogleMap(24, 13.721256, 100.530055));
+        mMap.addMarker(addMarkerToGoogleMap(17, 13.729769, 100.537156));
+        mMap.addMarker(addMarkerToGoogleMap(1, 13.688138, 100.749261));
+        mMap.addMarker(addMarkerToGoogleMap(11, 13.765903, 100.538376));
     }
 
     @Override
@@ -249,8 +258,57 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menu_filter:
+                return true;
+            case R.id.menu_map_type:
+                showMapTypeSelectorDialog();
+                return true;
+        }
+        return true;
+    }
 
+    private void showMapTypeSelectorDialog() {
+        // Prepare the dialog by setting up a Builder.
+        final String fDialogTitle = "Select Map Type";
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(fDialogTitle);
+
+        // Find the current map type to pre-check the item representing the current state.
+        int checkItem = mMap.getMapType() - 1;
+
+        // Add an OnClickListener to the dialog, so that the selection will be handled.
+        builder.setSingleChoiceItems(
+                MAP_TYPE_ITEMS,
+                checkItem,
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int item) {
+                        // Locally create a finalised object.
+
+                        // Perform an action depending on which item was selected.
+                        switch (item) {
+                            case 1:
+                                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                                break;
+                            case 2:
+                                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                                break;
+                            case 3:
+                                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                                break;
+                            default:
+                                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        }
+                        dialog.dismiss();
+                    }
+                }
+        );
+
+        // Build the dialog and show it.
+        AlertDialog fMapTypeDialog = builder.create();
+        fMapTypeDialog.setCanceledOnTouchOutside(true);
+        fMapTypeDialog.show();
     }
 
     @Override
@@ -279,7 +337,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    public void addMarkerToGoogleMap(int type, double lat, double lng) {
+    public MarkerOptions addMarkerToGoogleMap(int type, double lat, double lng) {
 
         MarkerOptions options = new MarkerOptions();
         options.position(new LatLng(lat, lng));
@@ -359,6 +417,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_work));
                 break;
         }
+
+        return options;
     }
 
     /**
