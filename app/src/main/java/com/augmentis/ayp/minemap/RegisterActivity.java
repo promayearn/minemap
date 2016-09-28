@@ -21,6 +21,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -226,7 +228,14 @@ public class RegisterActivity extends AppCompatActivity {
             String strURL = "http://minemap.hol.es/register.php?name=" + name + "&email=" + email + "&password=" + password;
 
             JsonHttp jsonHttp = new JsonHttp();
-            String strJson = jsonHttp.getJSONUrl(strURL);
+            String strJson = null;
+
+            try {
+
+                strJson = jsonHttp.getJSONUrl(strURL);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             statusUrl = strJson;
             Log.e("Update : ", strJson);
 

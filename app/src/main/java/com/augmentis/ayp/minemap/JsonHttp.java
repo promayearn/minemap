@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -71,32 +72,70 @@ public class JsonHttp {
         return builder.toString();
     }
 
-    public String getJSONUrl(String url) {
-        StringBuilder str = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(url);
-        try {
+    public String getJSONUrl(String url) throws IOException {
 
-            HttpResponse response = client.execute(httpGet);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) { // Download OK
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    str.append(line);
-                }
-            } else {
-                Log.e("Log", "Failed to download result..");
+        URL urlTest = new URL(url);
+
+        HttpURLConnection connection = (HttpURLConnection) urlTest.openConnection();
+
+        try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+            //read data from Stream
+            InputStream in = connection.getInputStream();
+
+            //if connection is not OK throw new IOException
+            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                throw new IOException(connection.getResponseMessage() + ": with " + url);
             }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            int bytesRead = 0;
+
+            byte[] buffer = new byte[2048];
+
+            while ((bytesRead = in.read(buffer)) > 0) {
+                out.write(buffer, 0, bytesRead);
+            }
+
+            out.close();
+
+            return out.toString();
+
+        } finally {
+            connection.disconnect();
         }
-        return str.toString();
     }
+//
+//    public String getJSONUrl(String url) {
+//        StringBuilder str = new StringBuilder();
+//        HttpClient client = new DefaultHttpClient();
+//        HttpGet httpGet = new HttpGet(url);
+//
+//        try {
+//
+//            URL urlTest = new URL(url);
+//            HttpURLConnection connection = (HttpURLConnection) urlTest.openConnection();
+//
+//            HttpResponse response = client.execute(httpGet);
+//            StatusLine statusLine = response.getStatusLine();
+//            int statusCode = statusLine.getStatusCode();
+//            if (statusCode == 200) { // Download OK
+//                HttpEntity entity = response.getEntity();
+//                InputStream content = entity.getContent();
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+//                String line;
+//                while ((line = reader.readLine()) != null) {
+//                    str.append(line);
+//                }
+//            } else {
+//                Log.e("Log", "Failed to download result..");
+//            }
+//        } catch (ClientProtocolException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return str.toString();
+//    }
 
 }

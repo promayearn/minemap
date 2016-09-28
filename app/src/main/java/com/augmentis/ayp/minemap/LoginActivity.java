@@ -17,6 +17,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static String TAG = "LoginActivity";
@@ -88,9 +90,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
             JsonHttp jsonHttp = new JsonHttp();
-            String strJson = jsonHttp.getJSONUrl(url);
+            String strJson = null;
+            try {
+                strJson = jsonHttp.getJSONUrl(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             try {
+
                 JSONObject json = new JSONObject(strJson);
                 String success = json.getString("status");
 
