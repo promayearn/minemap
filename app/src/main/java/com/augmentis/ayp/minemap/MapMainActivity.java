@@ -39,7 +39,6 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -135,8 +134,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         mGoogleMap.setBuildingsEnabled(true);
         //compass
         mUiSettings.setCompassEnabled(true);
-
-        mUiSettings.setMapToolbarEnabled(true);
+        //navigation option
+        mUiSettings.setMapToolbarEnabled(false);
 
         mGoogleMap.addMarker(addMarkerToGoogleMap(24, 13.721256, 100.530055));
         mGoogleMap.addMarker(addMarkerToGoogleMap(17, 13.729769, 100.537156));
@@ -157,7 +156,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     //new googleApiClient open app and go to current location
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -216,7 +214,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_item, menu);
+        getMenuInflater().inflate(R.menu.menu_main_item, menu);
         MenuItem menuItem = menu.findItem(R.id.menu_search);
         final SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQuery(mSearchKey, false);//
@@ -254,6 +252,10 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 return true;
             case R.id.menu_map_type:
                 showMapTypeSelectorDialog();
+                return true;
+            case R.id.menu_logout:
+                Intent i = new Intent(MapMainActivity.this, LoginActivity.class);
+                startActivity(i);
                 return true;
         }
         return true;
