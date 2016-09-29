@@ -53,11 +53,16 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".LoginActivity"></activity>
+            android:parentActivityName=".LoginActivity">
+
+        </activity>
+
         <activity
             android:name=".LocationDescription"
             android:label="@string/location_description"
-            android:parentActivityName=".MapRegisterActivity"></activity>
+            android:parentActivityName=".MapRegisterActivity">
+
+        </activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
