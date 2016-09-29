@@ -79,9 +79,9 @@
             <Button
                 android:id="@+id/btn_signin"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal|center"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorControlActivated"
                 android:text="@string/btn_sign_in"
                 android:textColor="@android:color/white" />
 
