@@ -6,6 +6,11 @@
     android:background="@color/gray"
     tools:context="com.augmentis.ayp.minemap.RegisterActivity">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +21,8 @@
         android:paddingLeft="25dp"
         android:paddingRight="25dp">
 
-        <LinearLayout
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -74,7 +80,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -91,14 +97,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:background="@color/white_gray"
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:textSize="25sp"
                 android:theme="@style/MyEditTextTheme" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
 
-            <include layout="@layout/photo_item" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="200dp"
+                    android:layout_height="130dp"
+                    android:background="@color/gray"
+                    android:paddingLeft="30dp" />
+
+                <TextView
+                    android:id="@+id/textName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/imageView"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="photo"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -117,11 +143,15 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_marginBottom="30dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorControlActivated"
                 android:text="@string/btn_save"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
 
+
     </LinearLayout>
+
+    </ScrollView>
+
 </RelativeLayout>
