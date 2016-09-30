@@ -139,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MapMainActivity.class);
                 startActivity(intent);
 
+                MinemapPreference.setStoredSearchKey(getApplicationContext(), id_user);
                 Log.d(TAG, "on Post : " + id_user);
             } else {
                 if (s.equals("NODATA") == true) {
