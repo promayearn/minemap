@@ -1,14 +1,19 @@
 package com.augmentis.ayp.minemap;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.augmentis.ayp.minemap.model.MineLocation;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LocationDescription extends AppCompatActivity {
 
@@ -59,12 +64,17 @@ public class LocationDescription extends AppCompatActivity {
 
     public void sendToDatabase() {
 
+        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                java.util.Locale.getDefault());
+        Date date = new Date();
+
+        id_user = MinemapPreference.getStoredSearchKey(getApplicationContext());
         loc_name = mInputName.getText().toString();
-        loc_date = mInputDate.getText().toString();
+        loc_date = DateFormat.format(date);
         loc_tel = mInputTel.getText().toString();
         loc_des = mInputDes.getText().toString();
 
-        new sendToBackground().execute(loc_name, loc_date, loc_tel, loc_des);
+        new sendToBackground().execute(id_user, loc_name, loc_date, loc_tel, loc_des);
     }
 
     public class sendToBackground extends AsyncTask<String, String, String> {
@@ -72,14 +82,13 @@ public class LocationDescription extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            loc_name = strings[0];
-            loc_date = strings[1];
-            loc_tel = strings[2];
-            loc_des = strings[3];
+            id_user = strings[0];
+            loc_name = strings[1];
+            loc_date = strings[2];
+            loc_tel = strings[3];
+            loc_des = strings[4];
             loc_lat = String.valueOf(mineLocation.getLatitude());
             loc_long = String.valueOf(mineLocation.getLongitude());
-            ;
-            id_user = "";
             loc_type = "";
             loc_pic = "";
 
