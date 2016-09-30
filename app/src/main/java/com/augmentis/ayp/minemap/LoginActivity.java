@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private String email;
     private String password;
     public String statusUrl;
+    public String id_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +108,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (success.equals("OK") == true) {
                     statusUrl = "OK";
+
+                    JSONArray Json_array_size = json.getJSONArray("result");
+                    for (int i = 0; i < Json_array_size.length(); i++)
+                    {
+                        JSONObject item = Json_array_size.getJSONObject(i);
+                        id_user = item.getString("id");
+
+                        Log.d(TAG, "id_user = " + id_user);
+                    }
                 } else {
                     if (success.equals("NODATA") == true) {
                        statusUrl = "NODATA";
@@ -125,6 +138,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginActivity.this, MapMainActivity.class);
                 startActivity(intent);
+
+                Log.d(TAG, "on Post : " + id_user);
             } else {
                 if (s.equals("NODATA") == true) {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();

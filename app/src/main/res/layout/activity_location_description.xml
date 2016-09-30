@@ -45,21 +45,21 @@
                     android:layout_width="40dp"
                     android:layout_height="45dp"
                     android:layout_marginBottom="5dp"
-                    android:background="@color/white_gray"
-                    app:srcCompat="@mipmap/ic_nam"
+                    android:background="@color/gray"
+                    app:srcCompat="@drawable/ic_assignment_black_24dp"
                     android:id="@+id/imageButton3" />
 
                 <ImageButton
                     android:layout_width="40dp"
                     android:layout_height="45dp"
-                    app:srcCompat="@mipmap/ic_date"
+                    app:srcCompat="@drawable/ic_date_range_black_24dp"
                     android:layout_marginBottom="5dp"
                     android:id="@+id/imageButton4" />
 
                 <ImageButton
                     android:layout_width="40dp"
                     android:layout_height="45dp"
-                    app:srcCompat="@mipmap/ic_tel"
+                    app:srcCompat="@drawable/ic_tablet_mac_black_24dp"
                     android:id="@+id/imageButton5" />
 
             </LinearLayout>
@@ -77,7 +77,6 @@
                             android:layout_height="45dp"
                             android:background="@color/white_gray"
                             android:hint="@string/hint_name"
-                            android:inputType="textEmailAddress"
                             android:textSize="15sp"
                             android:layout_marginBottom="5dp"
                             android:theme="@style/MyEditTextTheme" />
@@ -88,7 +87,6 @@
                             android:layout_height="45dp"
                             android:background="@color/white_gray"
                             android:hint="@string/hint_date"
-                            android:inputType="textEmailAddress"
                             android:textSize="15sp"
                             android:layout_marginBottom="5dp"
                             android:theme="@style/MyEditTextTheme" />
@@ -99,7 +97,6 @@
                             android:layout_height="45dp"
                             android:background="@color/white_gray"
                             android:hint="@string/hint_tel"
-                            android:inputType="textEmailAddress"
                             android:textSize="15sp"
                             android:layout_marginBottom="15dp"
                             android:theme="@style/MyEditTextTheme" />
@@ -156,15 +153,27 @@
                             android:background="@color/gray"
                             android:paddingLeft="10dp" />
 
-                        <ImageButton
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="30dp"
-                            app:srcCompat="@android:drawable/ic_menu_camera"
-                            android:id="@+id/imageButton"
-                            android:background="@color/colorPrimaryDark"
-                            android:layout_gravity="center_vertical|center"
-                            android:layout_weight="1" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical">
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_camera_alt_black_24dp"
+                                android:id="@+id/imageButton" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:text="Take a photo"/>
+
+                        </LinearLayout>
+
 
 
                     </LinearLayout>
@@ -182,7 +191,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/btn_save"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal|center"
