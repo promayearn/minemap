@@ -13,13 +13,13 @@ public class MinemapPreference {
 
     private static final String PREF_SEARCH_KEY = "minemappref";
 
-    public static String getStoredSearchKey(Context context){
+    public static String getStoredSearchKey(Context context) {
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
         return pref.getString(PREF_SEARCH_KEY, null);
     }
 
-    public static void setStoredSearchKey(Context context, String key){
+    public static void setStoredSearchKey(Context context, String key) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
         pref.edit()
                 .putString(PREF_SEARCH_KEY, key)

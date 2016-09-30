@@ -3,7 +3,6 @@ package com.augmentis.ayp.minemap;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.text.TextUtils;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -161,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (password.equals(confirmPassword)) {
             Log.d(TAG, "Correct Password !");
         } else {
-            Toast.makeText(getApplicationContext(),"Incorrect Confirm Password", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Incorrect Confirm Password", Toast.LENGTH_LONG).show();
             Log.d(TAG, " Incorrect Password !!!!");
             return false;
         }
@@ -246,9 +242,9 @@ public class RegisterActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-                Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
 
         }
     }

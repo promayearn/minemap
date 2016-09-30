@@ -20,7 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -83,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         new sendToBackground().execute(email, password);
     }
 
-    public class sendToBackground extends AsyncTask<String, String, String>{
+    public class sendToBackground extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -110,8 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                     statusUrl = "OK";
 
                     JSONArray Json_array_size = json.getJSONArray("result");
-                    for (int i = 0; i < Json_array_size.length(); i++)
-                    {
+                    for (int i = 0; i < Json_array_size.length(); i++) {
                         JSONObject item = Json_array_size.getJSONObject(i);
                         id_user = item.getString("id");
 
@@ -119,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     if (success.equals("NODATA") == true) {
-                       statusUrl = "NODATA";
+                        statusUrl = "NODATA";
                     }
                 }
 

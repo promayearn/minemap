@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.augmentis.ayp.minemap.model.MineLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -158,7 +159,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         //get current location
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        Toast.makeText(this, "Location Updated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "MineLocation Updated", Toast.LENGTH_SHORT).show();
 
         //zoom to current position:
         CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -223,7 +224,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                Toast.makeText(getApplicationContext(),"Back button clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Back button clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_map_type:
                 showMapTypeSelectorDialog();
@@ -308,7 +309,13 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onClick(View v) {
-                Intent intent = new Intent(MapRegisterActivity.this, LocationDescription.class);
-                startActivity(intent);
+
+        MineLocation mineLocation = MineLocation.getInstance();
+
+        mineLocation.setLatitude(latLng.latitude);
+        mineLocation.setLongitude(latLng.longitude);
+
+        Intent intent = new Intent(MapRegisterActivity.this, LocationDescription.class);
+        startActivity(intent);
     }
 }

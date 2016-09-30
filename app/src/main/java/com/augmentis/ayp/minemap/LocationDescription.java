@@ -3,9 +3,12 @@ package com.augmentis.ayp.minemap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.augmentis.ayp.minemap.model.MineLocation;
 
 public class LocationDescription extends AppCompatActivity {
 
@@ -17,6 +20,8 @@ public class LocationDescription extends AppCompatActivity {
     private EditText mInputDes;
 
     private Button mButtonSave;
+
+    private MineLocation mineLocation;
 
     private String loc_name;
     private String loc_date;
@@ -33,6 +38,10 @@ public class LocationDescription extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_description);
 
+        mineLocation = mineLocation.getInstance();
+
+        Log.d(TAG, "lat, lng : " + mineLocation.getLatitude() + ", " + mineLocation.getLongitude());
+
         mInputName = (EditText) findViewById(R.id.input_name);
         mInputDate = (EditText) findViewById(R.id.input_date);
         mInputTel = (EditText) findViewById(R.id.input_tel);
@@ -48,7 +57,7 @@ public class LocationDescription extends AppCompatActivity {
 
     }
 
-    public void sendToDatabase(){
+    public void sendToDatabase() {
 
         loc_name = mInputName.getText().toString();
         loc_date = mInputDate.getText().toString();
@@ -67,8 +76,9 @@ public class LocationDescription extends AppCompatActivity {
             loc_date = strings[1];
             loc_tel = strings[2];
             loc_des = strings[3];
-            loc_lat = "";
-            loc_long = "";
+            loc_lat = String.valueOf(mineLocation.getLatitude());
+            loc_long = String.valueOf(mineLocation.getLongitude());
+            ;
             id_user = "";
             loc_type = "";
             loc_pic = "";

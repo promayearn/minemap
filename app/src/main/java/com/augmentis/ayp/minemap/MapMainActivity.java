@@ -192,7 +192,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         //get current location
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        Toast.makeText(this, "Location Updated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "MineLocation Updated", Toast.LENGTH_SHORT).show();
 
         //zoom to current position:
         CameraPosition cameraPosition = new CameraPosition.Builder()
