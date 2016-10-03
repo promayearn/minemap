@@ -11,6 +11,7 @@ import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,9 +25,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +62,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     private UiSettings mUiSettings;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
+    private FloatingActionButton fab;
 
     private LatLng latLng;
     private TextView mTapTextView;
@@ -73,6 +77,15 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_map_register);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab_marker);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMarkerSelectorDialog();
+            }
+        });
 
         mTapTextView = (TextView) findViewById(R.id.lat_lng_on_touch);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -231,9 +244,6 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             case android.R.id.home:
                 onBackPressed();
                 Toast.makeText(getApplicationContext(), "Back button clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.menu_marker_type:
-                showMarkerSelectorDialog();
                 break;
             case R.id.menu_map_type:
                 showMapTypeSelectorDialog();

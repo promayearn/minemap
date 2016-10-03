@@ -9,11 +9,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_marker_type"
-        android:title="@string/marker_select"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/menu_map_type"
         android:title="@string/map_type"
         app:showAsAction="never" />
