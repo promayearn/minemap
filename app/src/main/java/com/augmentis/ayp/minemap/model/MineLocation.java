@@ -8,11 +8,13 @@ public class MineLocation {
 
     private double latitude;
     private double longitude;
+    private int type;
 
     public MineLocation() {
 
         latitude = 0;
         longitude = 0;
+        type = 1;
 
     }
 
@@ -42,4 +44,11 @@ public class MineLocation {
         this.longitude = longitude;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 }

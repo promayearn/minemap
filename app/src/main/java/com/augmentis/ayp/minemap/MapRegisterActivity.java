@@ -1,6 +1,7 @@
 package com.augmentis.ayp.minemap;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,16 +11,25 @@ import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +62,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     private UiSettings mUiSettings;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
+    private FloatingActionButton fab;
 
     private LatLng latLng;
     private TextView mTapTextView;
@@ -66,6 +77,15 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_map_register);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab_marker);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMarkerSelectorDialog();
+            }
+        });
 
         mTapTextView = (TextView) findViewById(R.id.lat_lng_on_touch);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -173,15 +193,14 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     //get LatLng on tapped
     @Override
     public void onMapClick(LatLng latLng) {
-        mTapTextView.setText("Tapped, Point=" + latLng);
+        mTapTextView.setText("Tapped, Point: " + latLng);
         if (mMarker != null) {
             mMarker.remove();
         }
         //add marker on same position of tapped
         mMarker = mGoogleMap.addMarker(new MarkerOptions()
                 //marker option
-                .title("Your Store")
-                .snippet("Here?")
+                .title("Here?")
                 .position(new LatLng(latLng.latitude, latLng.longitude))
                 .draggable(true).visible(true));
     }
@@ -278,6 +297,15 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         AlertDialog fMapTypeDialog = builder.create();
         fMapTypeDialog.setCanceledOnTouchOutside(true);
         fMapTypeDialog.show();
+    }
+
+    private void showMarkerSelectorDialog() {
+        // custom dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.marker_picker_dialog);
+        dialog.setTitle("Select Marker Type");
+
+        dialog.show();
     }
 
     @Override
