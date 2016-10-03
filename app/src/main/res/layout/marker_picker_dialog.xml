@@ -8,7 +8,9 @@
     <TableRow>
 
         <LinearLayout
+            android:id="@+id/marker_1"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -24,6 +26,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_2"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -40,7 +43,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_3"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -56,6 +61,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_4"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -75,6 +81,7 @@
     <TableRow>
 
         <LinearLayout
+            android:id="@+id/marker_5"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -91,7 +98,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_6"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -107,6 +116,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_7"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -123,7 +133,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_8"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -142,7 +154,9 @@
     <TableRow>
 
         <LinearLayout
+            android:id="@+id/marker_9"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -158,6 +172,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_10"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -170,11 +185,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Goverment Office" />
+                android:text="Goverment" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_11"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -190,6 +207,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_12"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -209,6 +227,7 @@
     <TableRow>
 
         <LinearLayout
+            android:id="@+id/marker_13"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -225,7 +244,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_14"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -241,6 +262,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_15"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -257,7 +279,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_16"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -276,7 +300,9 @@
     <TableRow>
 
         <LinearLayout
+            android:id="@+id/marker_17"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -292,6 +318,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_18"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -308,7 +335,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_19"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -324,6 +353,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_20"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -343,6 +373,7 @@
     <TableRow>
 
         <LinearLayout
+            android:id="@+id/marker_21"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -359,7 +390,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_22"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -375,6 +408,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_23"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -391,7 +425,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/marker_24"
             android:layout_weight="1"
+            android:background="@color/white_gray"
             android:gravity="center"
             android:orientation="vertical">
 
