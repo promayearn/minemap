@@ -40,7 +40,8 @@ public class LocationDescription extends AppCompatActivity {
 
         mineLocation = mineLocation.getInstance();
 
-        Log.d(TAG, "lat, lng : " + mineLocation.getLatitude() + ", " + mineLocation.getLongitude());
+        Log.d(TAG, "lat, lng : " + mineLocation.getLatitude() + ", " +
+                mineLocation.getLongitude() + ", " + mineLocation.getType());
 
         mInputName = (EditText) findViewById(R.id.input_name);
         mInputDate = (EditText) findViewById(R.id.input_date);
