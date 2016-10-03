@@ -1,6 +1,7 @@
 package com.augmentis.ayp.minemap;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,12 +15,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -173,15 +180,14 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     //get LatLng on tapped
     @Override
     public void onMapClick(LatLng latLng) {
-        mTapTextView.setText("Tapped, Point=" + latLng);
+        mTapTextView.setText("Tapped, Point: " + latLng);
         if (mMarker != null) {
             mMarker.remove();
         }
         //add marker on same position of tapped
         mMarker = mGoogleMap.addMarker(new MarkerOptions()
                 //marker option
-                .title("Your Store")
-                .snippet("Here?")
+                .title("Here?")
                 .position(new LatLng(latLng.latitude, latLng.longitude))
                 .draggable(true).visible(true));
     }
@@ -225,6 +231,9 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             case android.R.id.home:
                 onBackPressed();
                 Toast.makeText(getApplicationContext(), "Back button clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_marker_type:
+                showMarkerSelectorDialog();
                 break;
             case R.id.menu_map_type:
                 showMapTypeSelectorDialog();
@@ -278,6 +287,15 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         AlertDialog fMapTypeDialog = builder.create();
         fMapTypeDialog.setCanceledOnTouchOutside(true);
         fMapTypeDialog.show();
+    }
+
+    private void showMarkerSelectorDialog() {
+        // custom dialog
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.marker_picker_dialog);
+        dialog.setTitle("Select Marker Type");
+
+        dialog.show();
     }
 
     @Override
