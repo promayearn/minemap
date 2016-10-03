@@ -8,6 +8,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,7 +42,12 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -62,6 +68,18 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     private LatLng latLng;
     private String mSearchKey;
+    private String id_user;
+    private String statusUrl;
+    private ArrayList myLocList;
+    private String loc_id;
+    private String loc_name;
+    private String loc_lat;
+    private String loc_long;
+    private String loc_type;
+    private String loc_tel;
+    private String loc_des;
+    private String loc_pic;
+    private String loc_date;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -91,6 +109,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        sendToDatabase();
     }
 
     /**
@@ -448,5 +468,72 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    public void sendToDatabase(){
+
+        id_user = MinemapPreference.getStoredSearchKey(getApplicationContext());
+
+        new sendToBackground().execute(id_user);
+    }
+
+    public class sendToBackground extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            id_user = strings[0];
+
+            String url = "http://minemap.hol.es/login.php?id_user=" + id_user;
+
+            try {
+
+                JsonHttp jsonHttp = new JsonHttp();
+                String strJson = null;
+                try {
+
+                    strJson = jsonHttp.getJSONUrl(url);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                JSONObject json  = new JSONObject(strJson);
+                String success = json.getString("status");
+
+
+                if (success.equals("OK") == true) {
+                    statusUrl = "OK";
+
+                    JSONArray Json_array_size = json.getJSONArray("result");
+                    myLocList = new ArrayList<String>();
+
+                    for (int i = 0; i < Json_array_size.length(); i++) {
+                        JSONObject item = Json_array_size.getJSONObject(i);
+
+                         loc_id = item.getString("loc_id");
+                         id_user = item.getString("id_user");
+                         loc_name = item.getString("loc_name");
+                         loc_lat = item.getString("loc_lat");
+                         loc_long = item.getString("loc_long");
+                         loc_type = item.getString("loc_type");
+                         loc_tel = item.getString("loc_tel");
+                         loc_des = item.getString("loc_des");
+                         loc_pic = item.getString("loc_pic");
+                         loc_date = item.getString("loc_date");
+
+                    }
+                } else {
+                    if (success.equals("NODATA") == true) {
+                        statusUrl = "NODATA";
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            return null;
+        }
     }
 }

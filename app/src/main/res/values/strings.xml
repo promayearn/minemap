@@ -24,4 +24,6 @@
     <string name="hint_des">Description</string>
     <string name="next">Next</string>
     <string name="logout">Logout</string>
+    <string name="type">Type</string>
+    <string name="btn_ok">OK</string>
 </resources>

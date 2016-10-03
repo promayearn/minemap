@@ -16,4 +16,8 @@
         <!--<item name="colorControlHighlight">#FF3D00</item>-->
     </style>
 
+    <style name="MyButton">
+        <item name="colorAccent">@color/white_gray</item>
+    </style>
+
 </resources>
