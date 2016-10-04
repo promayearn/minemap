@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.augmentis.ayp.minemap.model.LocationItem;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -70,16 +71,10 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private String mSearchKey;
     private String id_user;
     private String statusUrl;
-    private ArrayList myLocList;
-    private String loc_id;
-    private String loc_name;
-    private String loc_lat;
-    private String loc_long;
-    private String loc_type;
-    private String loc_tel;
-    private String loc_des;
-    private String loc_pic;
-    private String loc_date;
+    private List<LocationItem> myItemList;
+    private LocationItem locationItem;
+
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -110,6 +105,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+//        locationItem = LocationItem.getInstance();
         sendToDatabase();
     }
 
@@ -505,22 +501,24 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     statusUrl = "OK";
 
                     JSONArray Json_array_size = json.getJSONArray("result");
-                    myLocList = new ArrayList<String>();
+//                    myItemList = new ArrayList<>();
 
                     for (int i = 0; i < Json_array_size.length(); i++) {
-                        JSONObject item = Json_array_size.getJSONObject(i);
+                        JSONObject object = Json_array_size.getJSONObject(i);
 
-                         loc_id = item.getString("loc_id");
-                         id_user = item.getString("id_user");
-                         loc_name = item.getString("loc_name");
-                         loc_lat = item.getString("loc_lat");
-                         loc_long = item.getString("loc_long");
-                         loc_type = item.getString("loc_type");
-                         loc_tel = item.getString("loc_tel");
-                         loc_des = item.getString("loc_des");
-                         loc_pic = item.getString("loc_pic");
-                         loc_date = item.getString("loc_date");
+                        locationItem = new LocationItem();
+                        locationItem.setLoc_id(object.getString("loc_id"));
+                        locationItem.setId_user(object.getString("id_user"));
+                        locationItem.setLoc_name(object.getString("loc_name"));
+                        locationItem.setLoc_lat(object.getString("loc_lat"));
+                        locationItem.setLoc_long(object.getString("loc_long"));
+                        locationItem.setLoc_type(object.getString("loc_type"));
+                        locationItem.setLoc_tel(object.getString("loc_tel"));
+                        locationItem.setLoc_des(object.getString("loc_des"));
+                        locationItem.setLoc_pic(object.getString("loc_pic"));
+                        locationItem.setLoc_date(object.getString("loc_date"));
 
+                        LocationItem.locationItems.add(locationItem);
                     }
                 } else {
                     if (success.equals("NODATA") == true) {
@@ -533,7 +531,13 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
 
 
-            return null;
+            return "finish";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            Log.d(TAG, "finish");
         }
     }
 }

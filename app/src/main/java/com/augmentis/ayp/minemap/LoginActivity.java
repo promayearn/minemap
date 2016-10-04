@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject item = Json_array_size.getJSONObject(i);
                         id_user = item.getString("id");
 
-                        Log.d(TAG, "id_user = " + id_user);
                     }
                 } else {
                     if (success.equals("NODATA") == true) {
@@ -138,7 +137,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 MinemapPreference.setStoredSearchKey(getApplicationContext(), id_user);
-                Log.d(TAG, "on Post : " + id_user);
             } else {
                 if (s.equals("NODATA") == true) {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
