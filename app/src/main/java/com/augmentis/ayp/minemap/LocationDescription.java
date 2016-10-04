@@ -17,6 +17,7 @@ import com.augmentis.ayp.minemap.model.MineLocation;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class LocationDescription extends AppCompatActivity {
     private EditText mInputDes;
 
     private Button mButtonSave;
+    private Button mButtonCamera;
 
     private MineLocation mineLocation;
 
@@ -44,6 +46,8 @@ public class LocationDescription extends AppCompatActivity {
     private String loc_pic;
     private String statusUrl;
 
+    private File photoFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +61,16 @@ public class LocationDescription extends AppCompatActivity {
         mInputName = (EditText) findViewById(R.id.input_name);
         mInputTel = (EditText) findViewById(R.id.input_tel);
         mInputDes = (EditText) findViewById(R.id.input_des);
-        mButtonSave = (Button) findViewById(R.id.btn_save);
 
+        mButtonCamera = (Button) findViewById(R.id.btn_camera);
+        mButtonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //
+            }
+        });
+
+        mButtonSave = (Button) findViewById(R.id.btn_save);
         mButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

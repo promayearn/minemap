@@ -51,4 +51,5 @@ public class MineLocation {
     public void setType(int type) {
         this.type = type;
     }
+
 }
