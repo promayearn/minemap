@@ -71,7 +71,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private String mSearchKey;
     private String id_user;
     private String statusUrl;
-    private List<LocationItem> myItemList;
+    private ArrayList<ArrayList<String>> myItemList;
+    private ArrayList<String> list1;
     private LocationItem locationItem;
 
 
@@ -479,30 +480,27 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         protected String doInBackground(String... strings) {
             id_user = strings[0];
 
-            String url = "http://minemap.hol.es/login.php?id_user=" + id_user;
+            String url = "http://minemap.hol.es/find_location_main.php?id_user=" + id_user;
+
+
+            JsonHttp jsonHttp = new JsonHttp();
+            String strJson = null;
+
+            try {
+                strJson = jsonHttp.getJSONUrl(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             try {
 
-                JsonHttp jsonHttp = new JsonHttp();
-                String strJson = null;
-                try {
-
-                    strJson = jsonHttp.getJSONUrl(url);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                JSONObject json  = new JSONObject(strJson);
+                JSONObject json = new JSONObject(strJson);
                 String success = json.getString("status");
-
 
                 if (success.equals("OK") == true) {
                     statusUrl = "OK";
 
                     JSONArray Json_array_size = json.getJSONArray("result");
-//                    myItemList = new ArrayList<>();
-
                     for (int i = 0; i < Json_array_size.length(); i++) {
                         JSONObject object = Json_array_size.getJSONObject(i);
 
@@ -517,8 +515,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                         locationItem.setLoc_des(object.getString("loc_des"));
                         locationItem.setLoc_pic(object.getString("loc_pic"));
                         locationItem.setLoc_date(object.getString("loc_date"));
-
                         LocationItem.locationItems.add(locationItem);
+
                     }
                 } else {
                     if (success.equals("NODATA") == true) {
@@ -531,13 +529,14 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
 
 
-            return "finish";
+            return statusUrl;
         }
 
         @Override
         protected void onPostExecute(String s) {
 
-            Log.d(TAG, "finish");
+            Log.d(TAG, "status --> " + s);
+            Log.d(TAG, "status --> " + LocationItem.locationItems.get(0).getLoc_name());
         }
     }
 }

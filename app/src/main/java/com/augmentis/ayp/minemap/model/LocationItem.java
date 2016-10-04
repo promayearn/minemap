@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class LocationItem {
 
-    public static ArrayList<LocationItem> locationItems = new ArrayList<LocationItem>();
+    public static  ArrayList<LocationItem> locationItems = new ArrayList<LocationItem>();
 
     private String id_user;
     private String loc_id;
@@ -35,7 +35,7 @@ public class LocationItem {
         loc_date = "";
     }
 
-    private static LocationItem instance;
+    protected static LocationItem instance;
 
     public static LocationItem getInstance() {
         if (instance == null) {
