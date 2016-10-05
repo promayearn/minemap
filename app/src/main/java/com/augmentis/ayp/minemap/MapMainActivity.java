@@ -154,10 +154,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         //navigation option
         mUiSettings.setMapToolbarEnabled(false);
 
-        mGoogleMap.addMarker(addMarkerToGoogleMap(24, 13.721256, 100.530055));
-        mGoogleMap.addMarker(addMarkerToGoogleMap(17, 13.729769, 100.537156));
-        mGoogleMap.addMarker(addMarkerToGoogleMap(1, 13.688138, 100.749261));
-        mGoogleMap.addMarker(addMarkerToGoogleMap(11, 13.765903, 100.538376));
+        Log.d(TAG, "Size of Location Item: " + LocationItem.locationItems.size());
     }
 
     @Override
