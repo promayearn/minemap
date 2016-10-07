@@ -109,7 +109,7 @@ public class LocationItem {
     }
 
     public String getLoc_pic() {
-        return loc_pic;
+        return "IMG_" + getLoc_id() + ".jpg";
     }
 
     public void setLoc_pic(String loc_pic) {
