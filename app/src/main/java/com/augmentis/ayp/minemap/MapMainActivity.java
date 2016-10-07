@@ -98,6 +98,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
         });
 
+        sendToDatabase();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_main_fragment);
@@ -105,9 +107,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-//        locationItem = LocationItem.getInstance();
-        sendToDatabase();
     }
 
     /**
@@ -155,6 +154,14 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         mUiSettings.setMapToolbarEnabled(false);
 
         Log.d(TAG, "Size of Location Item: " + LocationItem.locationItems.size());
+        if (LocationItem.locationItems.size() != 0) {
+            for (int i = 0; i < LocationItem.locationItems.size(); i++) {
+                addMarkerToGoogleMap(Integer.parseInt(LocationItem.locationItems.get(i).getLoc_type()),
+                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_lat()),
+                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()));
+                Log.d(TAG, "Add Marker");
+            }
+        }
     }
 
     @Override
@@ -206,8 +213,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         //get current location
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        Toast.makeText(this, "MineLocation Updated", Toast.LENGTH_SHORT).show();
-
         //zoom to current position:
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng).zoom(15).build();
@@ -222,8 +227,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-        }
     }
 
     @Override
@@ -344,7 +347,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    public MarkerOptions addMarkerToGoogleMap(int type, double lat, double lng) {
+    public void addMarkerToGoogleMap(int type, double lat, double lng) {
 
         MarkerOptions options = new MarkerOptions();
         options.position(new LatLng(lat, lng));
@@ -424,8 +427,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_work));
                 break;
         }
+        mGoogleMap.addMarker(options);
 
-        return options;
     }
 
     /**
@@ -464,7 +467,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         client.disconnect();
     }
 
-    public void sendToDatabase(){
+    public void sendToDatabase() {
 
         id_user = MinemapPreference.getStoredSearchKey(getApplicationContext());
 
@@ -531,7 +534,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         @Override
         protected void onPostExecute(String s) {
-
             Log.d(TAG, "status --> " + s);
             Log.d(TAG, "status --> " + LocationItem.locationItems.get(0).getLoc_name());
         }
