@@ -1,7 +1,9 @@
 package com.augmentis.ayp.minemap.model;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 
@@ -10,6 +12,7 @@ import java.io.File;
  */
 
 public class MineLocation {
+    private static final String TAG = "MineLocation";
 
     private double latitude;
     private double longitude;
@@ -25,7 +28,7 @@ public class MineLocation {
 
     //ส่ง Instance อื่นๆ
     private static MineLocation instance;
-    private Context context;
+    private ContextWrapper context;
 
     public static MineLocation getInstance() {
         if (instance == null) {
@@ -58,14 +61,5 @@ public class MineLocation {
         this.type = type;
     }
 
-    public File getLocPicFile(LocationItem locationItem) {
-
-        File externalFilesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
-        if (externalFilesDir == null) {
-            return null;
-        }
-        return new File(externalFilesDir, locationItem.getLoc_pic());
-    }
 
 }

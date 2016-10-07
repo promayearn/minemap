@@ -1,8 +1,16 @@
 package com.augmentis.ayp.minemap;
 
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -10,9 +18,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.augmentis.ayp.minemap.model.LocationItem;
 import com.augmentis.ayp.minemap.model.MineLocation;
+import com.augmentis.ayp.minemap.model.PictureUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +35,7 @@ import java.util.Date;
 
 public class LocationDescription extends AppCompatActivity {
 
+    private static final int REQUEST_CAPTURE_PHOTO = 121;
     private static String TAG = "LocationDescription";
 
     private EditText mInputName;
@@ -31,7 +43,8 @@ public class LocationDescription extends AppCompatActivity {
     private EditText mInputDes;
 
     private Button mButtonSave;
-    private Button mButtonCamera;
+    private FloatingActionButton mButtonCamera;
+    private ImageView mImgView;
 
     private MineLocation mineLocation;
 
@@ -47,13 +60,15 @@ public class LocationDescription extends AppCompatActivity {
     private String statusUrl;
 
     private File photoFile;
+    public LocationItem locationItem;
+    public Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_description);
 
-        mineLocation = mineLocation.getInstance();
+        mineLocation = MineLocation.getInstance();
 
         Log.d(TAG, "lat, lng : " + mineLocation.getLatitude() + ", " +
                 mineLocation.getLongitude() + ", " + mineLocation.getType());
@@ -61,14 +76,7 @@ public class LocationDescription extends AppCompatActivity {
         mInputName = (EditText) findViewById(R.id.input_name);
         mInputTel = (EditText) findViewById(R.id.input_tel);
         mInputDes = (EditText) findViewById(R.id.input_des);
-
-        mButtonCamera = (Button) findViewById(R.id.btn_camera);
-        mButtonCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //
-            }
-        });
+        mImgView = (ImageView) findViewById(R.id.imageView);
 
         mButtonSave = (Button) findViewById(R.id.btn_save);
         mButtonSave.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +86,53 @@ public class LocationDescription extends AppCompatActivity {
             }
         });
 
+//        PackageManager packageManager = getApplicationContext().getPackageManager();
+//        //call camera intent
+//        final Intent captureImageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//        boolean canTakePhoto = photoFile != null && captureImageIntent.resolveActivity(packageManager) != null;
+//
+//        if(canTakePhoto){
+//            Uri uri = Uri.fromFile(photoFile);
+//
+//            Log.d(TAG, "File output at" + photoFile.getAbsolutePath());
+//            captureImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+//        }
+
+        mButtonCamera = (FloatingActionButton) findViewById(R.id.btn_camera);
+        mButtonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String timeStamp =
+                        new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                String imageFileName = "IMG_" + timeStamp + ".jpg";
+                File f = new File(Environment.getExternalStorageDirectory()
+                        , "DCIM/Camera/" + imageFileName);
+                uri = Uri.fromFile(f);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startActivityForResult(Intent.createChooser(intent
+                        , "Take a picture with"), REQUEST_CAPTURE_PHOTO);
+
+                Log.d(TAG, "T E S T F I L E -------------- > " + imageFileName);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CAPTURE_PHOTO && resultCode == RESULT_OK) {
+            getContentResolver().notifyChange(uri, null);
+            ContentResolver cr = getContentResolver();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(cr, uri);
+                mImgView.setImageBitmap(bitmap);
+                Toast.makeText(getApplicationContext()
+                        , uri.getPath(), Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void sendToDatabase() {
@@ -141,4 +196,5 @@ public class LocationDescription extends AppCompatActivity {
 
         }
     }
+
 }
