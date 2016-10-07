@@ -1,6 +1,7 @@
 package com.augmentis.ayp.minemap;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -61,6 +62,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private static final CharSequence[] MAP_TYPE_ITEMS =
             {"Road Map", "Hybrid", "Satellite", "Terrain"};
 
+    private ProgressDialog progress;
     private GoogleMap mGoogleMap;
     private UiSettings mUiSettings;
     private LocationRequest mLocationRequest;
@@ -99,6 +101,12 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         });
 
         sendToDatabase();
+
+        progress = new ProgressDialog(this);
+        progress.setMessage("Loading...");
+        progress.setIndeterminate(true);
+        progress.setCancelable(false);
+        progress.show();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -142,6 +150,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
             return;
         }
+
         //current location button
         mGoogleMap.setMyLocationEnabled(true);
         //show traffic
@@ -162,6 +171,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 Log.d(TAG, "Add Marker");
             }
         }
+        progress.dismiss();
     }
 
     @Override
