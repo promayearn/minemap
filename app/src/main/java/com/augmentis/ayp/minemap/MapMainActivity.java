@@ -1,6 +1,7 @@
 package com.augmentis.ayp.minemap;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.augmentis.ayp.minemap.model.LocationItem;
@@ -68,12 +71,12 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
     private FloatingActionButton fab;
+    private boolean[] filter = new boolean[24];
 
     private LatLng latLng;
     private String mSearchKey;
     private String id_user;
     private String statusUrl;
-    private ArrayList<ArrayList<String>> myItemList;
     private ArrayList<String> list1;
     private LocationItem locationItem;
 
@@ -130,7 +133,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
 
         mGoogleMap = googleMap;
-
         mGoogleMap = googleMap;
         mUiSettings = mGoogleMap.getUiSettings(); // set ui about map --> traffic building
         //set Map Type
@@ -161,6 +163,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         mUiSettings.setCompassEnabled(true);
         //navigation option
         mUiSettings.setMapToolbarEnabled(false);
+
+        setDefaultFilter();
 
         Log.d(TAG, "Size of Location Item: " + LocationItem.locationItems.size());
         if (LocationItem.locationItems.size() != 0) {
@@ -272,10 +276,17 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         return true;
     }
 
+    private void setDefaultFilter() {
+        for (int i = 0; i < 24; i++) {
+            filter[i] = false;
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_filter:
+                filterMapTypeDialog();
                 return true;
             case R.id.menu_map_type:
                 showMapTypeSelectorDialog();
@@ -286,6 +297,218 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 return true;
         }
         return true;
+    }
+
+    private void filterMapTypeDialog() {
+
+        CheckBox c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12,
+                c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24;
+        TextView okTextView;
+
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.marker_filter_dialog);
+
+        okTextView = (TextView) dialog.findViewById(R.id.text_ok);
+        okTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        c1 = (CheckBox) dialog.findViewById(R.id.checkbox_1);
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[0] = !filter[0];
+            }
+        });
+
+        c2 = (CheckBox) dialog.findViewById(R.id.checkbox_2);
+        c2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[1] = true;
+            }
+        });
+
+        c3 = (CheckBox) dialog.findViewById(R.id.checkbox_3);
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[2] = true;
+            }
+        });
+
+        c4 = (CheckBox) dialog.findViewById(R.id.checkbox_4);
+        c4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[3] = true;
+            }
+        });
+
+        c5 = (CheckBox) dialog.findViewById(R.id.checkbox_5);
+        c5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[4] = true;
+            }
+        });
+
+        c6 = (CheckBox) dialog.findViewById(R.id.checkbox_6);
+        c6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[5] = true;
+            }
+        });
+
+        c7 = (CheckBox) dialog.findViewById(R.id.checkbox_7);
+        c7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[6] = true;
+            }
+        });
+
+        c8 = (CheckBox) dialog.findViewById(R.id.checkbox_8);
+        c8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[7] = true;
+            }
+        });
+
+        c9 = (CheckBox) dialog.findViewById(R.id.checkbox_9);
+        c9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[8] = true;
+            }
+        });
+
+        c10 = (CheckBox) dialog.findViewById(R.id.checkbox_10);
+        c10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[9] = true;
+            }
+        });
+
+        c11 = (CheckBox) dialog.findViewById(R.id.checkbox_11);
+        c11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[10] = true;
+            }
+        });
+
+        c12 = (CheckBox) dialog.findViewById(R.id.checkbox_12);
+        c12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[11] = true;
+            }
+        });
+
+        c13 = (CheckBox) dialog.findViewById(R.id.checkbox_13);
+        c13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[12] = true;
+            }
+        });
+
+        c14 = (CheckBox) dialog.findViewById(R.id.checkbox_14);
+        c14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[13] = true;
+            }
+        });
+
+        c15 = (CheckBox) dialog.findViewById(R.id.checkbox_15);
+        c15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[14] = true;
+            }
+        });
+
+        c16 = (CheckBox) dialog.findViewById(R.id.checkbox_16);
+        c16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[15] = true;
+            }
+        });
+
+        c17 = (CheckBox) dialog.findViewById(R.id.checkbox_17);
+        c17.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[16] = true;
+            }
+        });
+
+        c18 = (CheckBox) dialog.findViewById(R.id.checkbox_18);
+        c18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[17] = true;
+            }
+        });
+
+        c19 = (CheckBox) dialog.findViewById(R.id.checkbox_19);
+        c19.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[18] = true;
+            }
+        });
+
+        c20 = (CheckBox) dialog.findViewById(R.id.checkbox_20);
+        c20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[19] = true;
+            }
+        });
+
+        c21 = (CheckBox) dialog.findViewById(R.id.checkbox_21);
+        c21.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[20] = true;
+            }
+        });
+
+        c22 = (CheckBox) dialog.findViewById(R.id.checkbox_22);
+        c22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[21] = true;
+            }
+        });
+
+        c23 = (CheckBox) dialog.findViewById(R.id.checkbox_23);
+        c23.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[22] = true;
+            }
+        });
+
+        c24 = (CheckBox) dialog.findViewById(R.id.checkbox_24);
+        c24.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filter[23] = true;
+            }
+        });
+
+        dialog.show();
     }
 
     private void showMapTypeSelectorDialog() {
