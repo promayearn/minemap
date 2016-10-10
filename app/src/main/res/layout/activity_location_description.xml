@@ -134,7 +134,7 @@
                     android:paddingLeft="10dp">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/imgShow"
                         android:layout_width="220dp"
                         android:layout_height="200dp"
                         android:background="@color/gray"

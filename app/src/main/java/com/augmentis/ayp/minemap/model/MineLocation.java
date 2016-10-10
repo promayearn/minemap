@@ -28,7 +28,6 @@ public class MineLocation {
 
     //ส่ง Instance อื่นๆ
     private static MineLocation instance;
-    private ContextWrapper context;
 
     public static MineLocation getInstance() {
         if (instance == null) {

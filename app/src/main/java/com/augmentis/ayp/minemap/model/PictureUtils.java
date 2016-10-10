@@ -1,6 +1,7 @@
 package com.augmentis.ayp.minemap.model;
 
 import android.app.Activity;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
