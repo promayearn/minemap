@@ -839,7 +839,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         @Override
         protected void onPostExecute(String s) {
-            Log.d(TAG, "status --> " + s);
             Log.d(TAG, "status --> " + LocationItem.locationItems.get(0).getLoc_name());
         }
     }

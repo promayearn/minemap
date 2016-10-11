@@ -109,21 +109,26 @@ public class LocationDescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent captureImageIntent  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//                Intent captureImageIntent  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 imageFileName = "IMG_" + timeStamp + ".jpg";
                 filePhoto = new File(Environment.getExternalStorageDirectory(), "DCIM/Camera/" + imageFileName);
                 uri = Uri.fromFile(filePhoto);
-                captureImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 
-                startActivityForResult(Intent.createChooser(captureImageIntent, "Take a picture with"), REQUEST_CAPTURE_PHOTO);
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+
+//                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                    startActivityForResult(takePictureIntent,REQUEST_CAPTURE_PHOTO);
+                }
+
+//                startActivityForResult(Intent.createChooser(captureImageIntent, "Take a picture with"), REQUEST_CAPTURE_PHOTO);
                 Log.d(TAG, "T E S T F I L E -------------- > " + uri);
 
             }
         });
 
-//        updatePhotoView();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -131,13 +136,17 @@ public class LocationDescription extends AppCompatActivity {
 
         if (requestCode == REQUEST_CAPTURE_PHOTO && resultCode == RESULT_OK) {
             getContentResolver().notifyChange(uri, null);
-            ContentResolver cr = getContentResolver();
-
-            Log.d(TAG, " u r i p a t h " + uri.getPath());
-
-            final Bitmap bitmap = PictureUtils.getScaledBitmap(uri.getPath(), this);
+//            ContentResolver cr = getContentResolver();
+            Log.d(TAG, " d a t a " + data);
+            Bundle extras = data.getExtras();
+            Bitmap bitmap = (Bitmap) extras.get("data");
             mImgView.setImageBitmap(bitmap);
-
+//
+//            Log.d(TAG, " u r i p a t h " + uri.getPath());
+//
+//            final Bitmap bitmap = PictureUtils.getScaledBitmap(uri.getPath(), this);
+//            mImgView.setImageBitmap(bitmap);
+//
         }
     }
 
@@ -169,7 +178,7 @@ public class LocationDescription extends AppCompatActivity {
             loc_lat = String.valueOf(mineLocation.getLatitude());
             loc_long = String.valueOf(mineLocation.getLongitude());
             loc_type = String.valueOf(mineLocation.getType());
-            loc_pic = imageFileName;
+            loc_pic = String.valueOf(uri);
 
             String strURL = "http://minemap.hol.es/add_location.php?id_user=" + id_user + "&loc_name=" + loc_name +
                     "&loc_lat=" + loc_lat + "&loc_long=" + loc_long + "&loc_type=" + loc_type + "&loc_tel=" + loc_tel +
