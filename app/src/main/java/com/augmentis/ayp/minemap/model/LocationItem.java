@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class LocationItem {
 
-    public static  ArrayList<LocationItem> locationItems = new ArrayList<LocationItem>();
+    public static ArrayList<LocationItem> locationItems = new ArrayList<LocationItem>();
 
     private String id_user;
     private String loc_id;
@@ -22,7 +22,7 @@ public class LocationItem {
     private String loc_date;
 
 
-    public LocationItem(){
+    public LocationItem() {
         id_user = "";
         loc_id = "";
         loc_name = "";

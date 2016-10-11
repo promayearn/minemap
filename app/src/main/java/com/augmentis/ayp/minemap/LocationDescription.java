@@ -120,7 +120,7 @@ public class LocationDescription extends AppCompatActivity {
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 
 //                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                    startActivityForResult(takePictureIntent,REQUEST_CAPTURE_PHOTO);
+                    startActivityForResult(takePictureIntent, REQUEST_CAPTURE_PHOTO);
                 }
 
 //                startActivityForResult(Intent.createChooser(captureImageIntent, "Take a picture with"), REQUEST_CAPTURE_PHOTO);
@@ -185,7 +185,7 @@ public class LocationDescription extends AppCompatActivity {
                     "&loc_des=" + loc_des + "&loc_pic=" + loc_pic + "&loc_date=" + loc_date;
 
             JsonHttp jsonHttp = new JsonHttp();
-            String  strJson = null;
+            String strJson = null;
 
             try {
 

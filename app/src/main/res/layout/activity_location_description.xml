@@ -72,8 +72,8 @@
                         android:layout_marginBottom="5dp"
                         android:background="@color/white_gray"
                         android:hint="@string/hint_name"
-                        android:textSize="15sp"
                         android:paddingLeft="10dp"
+                        android:textSize="15sp"
                         android:theme="@style/MyEditTextTheme" />
 
 
@@ -84,8 +84,8 @@
                         android:layout_marginBottom="15dp"
                         android:background="@color/white_gray"
                         android:hint="@string/hint_tel"
-                        android:textSize="15sp"
                         android:paddingLeft="10dp"
+                        android:textSize="15sp"
                         android:theme="@style/MyEditTextTheme" />
 
 
@@ -152,8 +152,8 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_gravity="center_horizontal"
-                            android:theme="@style/MyButton"
-                            android:src="@drawable/ic_camera_alt_black_24dp" />
+                            android:src="@drawable/ic_camera_alt_black_24dp"
+                            android:theme="@style/MyButton" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -187,7 +187,8 @@
                     android:layout_marginBottom="30dp"
                     android:background="@color/colorControlActivated"
                     android:text="@string/btn_save"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp" />
 
             </LinearLayout>
 

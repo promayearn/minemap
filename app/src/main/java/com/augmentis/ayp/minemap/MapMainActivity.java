@@ -167,14 +167,9 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         setDefaultFilter();
 
         Log.d(TAG, "Size of Location Item: " + LocationItem.locationItems.size());
-        if (LocationItem.locationItems.size() != 0) {
-            for (int i = 0; i < LocationItem.locationItems.size(); i++) {
-                addMarkerToGoogleMap(Integer.parseInt(LocationItem.locationItems.get(i).getLoc_type()),
-                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_lat()),
-                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()));
-                Log.d(TAG, "Add Marker");
-            }
-        }
+
+        addMarker();
+
         progress.dismiss();
     }
 
@@ -299,6 +294,18 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         return true;
     }
 
+    private void addMarker() {
+
+        if (LocationItem.locationItems.size() != 0) {
+            for (int i = 0; i < LocationItem.locationItems.size(); i++) {
+                addMarkerToGoogleMap(Integer.parseInt(LocationItem.locationItems.get(i).getLoc_type()),
+                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_lat()),
+                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()));
+                Log.d(TAG, "Add Marker");
+            }
+        }
+    }
+
     private void filterMapTypeDialog() {
 
         CheckBox c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12,
@@ -313,6 +320,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                mGoogleMap.clear();
+                addMarker();
             }
         });
 
@@ -658,82 +667,79 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         options.position(new LatLng(lat, lng));
         options.draggable(true).visible(true);
 
-        switch (type) {
-            case 1:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_airplane));
-                break;
-            case 2:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_bank));
-                break;
-            case 3:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_car));
-                break;
-            case 4:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_car_park));
-                break;
-            case 5:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cinema));
-                break;
-            case 6:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_coffee));
-                break;
-            case 7:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_dessert));
-                break;
-            case 8:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_fitness));
-                break;
-            case 9:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_gas_station));
-                break;
-            case 10:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_goverment));
-                break;
-            case 11:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_home));
-                break;
-            case 12:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hospital));
-                break;
-            case 13:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hotel));
-                break;
-            case 14:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_mall));
-                break;
-            case 15:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_mountain));
-                break;
-            case 16:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_other));
-                break;
-            case 17:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_park));
-                break;
-            case 18:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_restaurant));
-                break;
-            case 19:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_school));
-                break;
-            case 20:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_sea));
-                break;
-            case 21:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_ship));
-                break;
-            case 22:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_temple));
-                break;
-            case 23:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_train));
-                break;
-            case 24:
-                options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_work));
-                break;
+        if (type == 1 && !filter[0]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_airplane));
+            mGoogleMap.addMarker(options);
+        } else if (type == 2 && !filter[1]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_bank));
+            mGoogleMap.addMarker(options);
+        } else if (type == 3 && !filter[2]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_car));
+            mGoogleMap.addMarker(options);
+        } else if (type == 4 && !filter[3]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_car_park));
+            mGoogleMap.addMarker(options);
+        } else if (type == 5 && !filter[4]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cinema));
+            mGoogleMap.addMarker(options);
+        } else if (type == 6 && !filter[5]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_coffee));
+            mGoogleMap.addMarker(options);
+        } else if (type == 7 && !filter[6]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_dessert));
+            mGoogleMap.addMarker(options);
+        } else if (type == 8 && !filter[7]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_fitness));
+            mGoogleMap.addMarker(options);
+        } else if (type == 9 && !filter[8]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_gas_station));
+            mGoogleMap.addMarker(options);
+        } else if (type == 10 && !filter[9]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_goverment));
+            mGoogleMap.addMarker(options);
+        } else if (type == 11 && !filter[10]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_home));
+            mGoogleMap.addMarker(options);
+        } else if (type == 12 && !filter[11]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hospital));
+            mGoogleMap.addMarker(options);
+        } else if (type == 13 && !filter[12]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hotel));
+            mGoogleMap.addMarker(options);
+        } else if (type == 14 && !filter[13]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_mall));
+            mGoogleMap.addMarker(options);
+        } else if (type == 15 && !filter[14]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_mountain));
+            mGoogleMap.addMarker(options);
+        } else if (type == 16 && !filter[15]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_other));
+            mGoogleMap.addMarker(options);
+        } else if (type == 17 && !filter[16]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_park));
+            mGoogleMap.addMarker(options);
+        } else if (type == 18 && !filter[17]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_restaurant));
+            mGoogleMap.addMarker(options);
+        } else if (type == 19 && !filter[18]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_school));
+            mGoogleMap.addMarker(options);
+        } else if (type == 20 && !filter[19]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_sea));
+            mGoogleMap.addMarker(options);
+        } else if (type == 21 && !filter[20]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_ship));
+            mGoogleMap.addMarker(options);
+        } else if (type == 22 && !filter[21]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_temple));
+            mGoogleMap.addMarker(options);
+        } else if (type == 23 && !filter[22]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_train));
+            mGoogleMap.addMarker(options);
+        } else if (type == 24 && !filter[23]) {
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_work));
+            mGoogleMap.addMarker(options);
         }
-        mGoogleMap.addMarker(options);
-
     }
 
     /**
@@ -839,7 +845,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         @Override
         protected void onPostExecute(String s) {
-            Log.d(TAG, "status --> " + LocationItem.locationItems.get(0).getLoc_name());
         }
     }
 }
