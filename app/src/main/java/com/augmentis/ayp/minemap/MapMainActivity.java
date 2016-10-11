@@ -21,10 +21,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +47,7 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -79,7 +82,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private String statusUrl;
     private ArrayList<String> list1;
     private LocationItem locationItem;
-
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -140,6 +142,14 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         mGoogleMap.setOnMapClickListener(this);
         buildGoogleApiClient();
+
+        mGoogleMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                marker.hideInfoWindow();
+            }
+        });
 
         mGoogleApiClient.connect();
 
@@ -300,7 +310,10 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             for (int i = 0; i < LocationItem.locationItems.size(); i++) {
                 addMarkerToGoogleMap(Integer.parseInt(LocationItem.locationItems.get(i).getLoc_type()),
                         Double.parseDouble(LocationItem.locationItems.get(i).getLoc_lat()),
-                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()));
+                        Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()),
+                        LocationItem.locationItems.get(i).getLoc_name() + "," + LocationItem.locationItems.get(i).getLoc_type()
+                                + "," + LocationItem.locationItems.get(i).getLoc_tel() + "," + LocationItem.locationItems.get(i).getLoc_des()
+                                + "," + LocationItem.locationItems.get(i).getLoc_date() + "," + LocationItem.locationItems.get(i).getLoc_pic());
                 Log.d(TAG, "Add Marker");
             }
         }
@@ -661,11 +674,11 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    public void addMarkerToGoogleMap(int type, double lat, double lng) {
+    public void addMarkerToGoogleMap(int type, double lat, double lng, String title) {
 
         MarkerOptions options = new MarkerOptions();
         options.position(new LatLng(lat, lng));
-        options.title("Hi");
+        options.title(title);
         options.draggable(true).visible(true);
 
         if (type == 1 && !filter[0]) {
@@ -851,6 +864,117 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         @Override
         protected void onPostExecute(String s) {
+        }
+    }
+
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
+
+        private final View myContentsView;
+
+        MyInfoWindowAdapter() {
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_item, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            String[] data = marker.getTitle().split(",");
+            String type = "";
+
+            switch(data[1]){
+                case "1":
+                    type = "Airport";
+                    break;
+                case "2":
+                    type = "Bank";
+                    break;
+                case "3":
+                    type = "Car Transportation";
+                    break;
+                case "4":
+                    type = "Parking Lot";
+                    break;
+                case "5":
+                    type = "Cinema";
+                    break;
+                case "6":
+                    type = "Coffee Shop";
+                    break;
+                case "7":
+                    type = "Dessert Cafe";
+                    break;
+                case "8":
+                    type = "Fitness";
+                    break;
+                case "9":
+                    type = "Gas Station";
+                    break;
+                case "10":
+                    type = "Goverment Office";
+                    break;
+                case "11":
+                    type = "Home";
+                    break;
+                case "12":
+                    type = "Hospital";
+                    break;
+                case "13":
+                    type = "Hotel";
+                    break;
+                case "14":
+                    type = "Mall";
+                    break;
+                case "15":
+                    type = "Mountain";
+                    break;
+                case "16":
+                    type = "Other";
+                    break;
+                case "17":
+                    type = "Park";
+                    break;
+                case "18":
+                    type = "Restaurant";
+                    break;
+                case "19":
+                    type = "School";
+                    break;
+                case "20":
+                    type = "Sea";
+                    break;
+                case "21":
+                    type = "Ship Transportation";
+                    break;
+                case "22":
+                    type = "Temple";
+                    break;
+                case "23":
+                    type = "Train Transportation";
+                    break;
+                case "24":
+                    type = "Work Place";
+                    break;
+            }
+
+            ImageView imageView = (ImageView) myContentsView.findViewById(R.id.img_of_marker);
+            
+            TextView t1 = ((TextView) myContentsView.findViewById(R.id.text_1));
+            t1.setText("Name: " + data[0]);
+            TextView t2 = ((TextView) myContentsView.findViewById(R.id.text_2));
+            t2.setText("Type: " + type);
+            TextView t3 = ((TextView) myContentsView.findViewById(R.id.text_3));
+            t3.setText("Tel: " + data[2]);
+            TextView t4 = ((TextView) myContentsView.findViewById(R.id.text_4));
+            t4.setText("Description: " + data[3]);
+            TextView t5 = ((TextView) myContentsView.findViewById(R.id.text_5));
+            t5.setText("Date Added: " + data[4]);
+
+            return myContentsView;
         }
     }
 }
