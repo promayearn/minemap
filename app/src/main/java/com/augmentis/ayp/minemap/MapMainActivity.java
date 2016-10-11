@@ -665,6 +665,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         MarkerOptions options = new MarkerOptions();
         options.position(new LatLng(lat, lng));
+        options.title("Hi");
         options.draggable(true).visible(true);
 
         if (type == 1 && !filter[0]) {
@@ -776,6 +777,11 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     public void sendToDatabase() {

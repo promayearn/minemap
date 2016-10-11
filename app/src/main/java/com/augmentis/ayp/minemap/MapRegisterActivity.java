@@ -64,6 +64,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     private Marker mMarker;
     private Button mButton;
 
+    private double lat, lng;
     private String mSearchKey;
     private int markerType = 1;
 
@@ -176,8 +177,6 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         //get current location
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        Toast.makeText(this, "MineLocation Updated", Toast.LENGTH_SHORT).show();
-
         //zoom to current position:
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng).zoom(15).build();
@@ -192,6 +191,14 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     public void onMapClick(LatLng latLng) {
 
         mTapTextView.setText("Tapped, Point: " + latLng);
+
+        lat = latLng.latitude;
+        lng = latLng.longitude;
+
+        addMerkerToGoogleMap(lat, lng);
+    }
+
+    private void addMerkerToGoogleMap(double lat, double lng) {
 
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN);
 
@@ -276,9 +283,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         //add marker on same position of tapped
         mMarker = mGoogleMap.addMarker(new MarkerOptions()
                 //marker option
-                .title("Here?")
                 .icon(bitmapDescriptor)
-                .position(new LatLng(latLng.latitude, latLng.longitude))
+                .position(new LatLng(lat, lng))
                 .draggable(true).visible(true));
     }
 
@@ -391,6 +397,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 1;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l2 = (LinearLayout) dialog.findViewById(R.id.marker_2);
@@ -399,6 +406,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 2;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l3 = (LinearLayout) dialog.findViewById(R.id.marker_3);
@@ -407,6 +415,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 3;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l4 = (LinearLayout) dialog.findViewById(R.id.marker_4);
@@ -415,6 +424,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 4;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l5 = (LinearLayout) dialog.findViewById(R.id.marker_5);
@@ -423,6 +433,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 5;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l6 = (LinearLayout) dialog.findViewById(R.id.marker_6);
@@ -431,6 +442,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 6;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l7 = (LinearLayout) dialog.findViewById(R.id.marker_7);
@@ -439,6 +451,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 7;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l8 = (LinearLayout) dialog.findViewById(R.id.marker_8);
@@ -447,6 +460,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 8;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l9 = (LinearLayout) dialog.findViewById(R.id.marker_9);
@@ -455,6 +469,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 9;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l10 = (LinearLayout) dialog.findViewById(R.id.marker_10);
@@ -463,6 +478,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 10;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l11 = (LinearLayout) dialog.findViewById(R.id.marker_11);
@@ -471,6 +487,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 11;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l12 = (LinearLayout) dialog.findViewById(R.id.marker_12);
@@ -479,6 +496,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 12;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l13 = (LinearLayout) dialog.findViewById(R.id.marker_13);
@@ -487,6 +505,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 13;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l14 = (LinearLayout) dialog.findViewById(R.id.marker_14);
@@ -495,6 +514,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 14;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l15 = (LinearLayout) dialog.findViewById(R.id.marker_15);
@@ -503,6 +523,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 15;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l16 = (LinearLayout) dialog.findViewById(R.id.marker_16);
@@ -511,6 +532,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 16;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l17 = (LinearLayout) dialog.findViewById(R.id.marker_17);
@@ -519,6 +541,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 17;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l18 = (LinearLayout) dialog.findViewById(R.id.marker_18);
@@ -527,6 +550,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 18;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l19 = (LinearLayout) dialog.findViewById(R.id.marker_19);
@@ -535,6 +559,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 19;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l20 = (LinearLayout) dialog.findViewById(R.id.marker_20);
@@ -543,6 +568,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 20;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l21 = (LinearLayout) dialog.findViewById(R.id.marker_21);
@@ -551,6 +577,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 21;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l22 = (LinearLayout) dialog.findViewById(R.id.marker_22);
@@ -559,6 +586,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 22;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l23 = (LinearLayout) dialog.findViewById(R.id.marker_23);
@@ -567,6 +595,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 23;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         l24 = (LinearLayout) dialog.findViewById(R.id.marker_24);
@@ -575,6 +604,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 markerType = 24;
                 dialog.dismiss();
+                addMerkerToGoogleMap(lat, lng);
             }
         });
         dialog.show();
@@ -612,8 +642,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
 
         MineLocation mineLocation = MineLocation.getInstance();
 
-        mineLocation.setLatitude(latLng.latitude);
-        mineLocation.setLongitude(latLng.longitude);
+        mineLocation.setLatitude(lat);
+        mineLocation.setLongitude(lng);
         mineLocation.setType(markerType);
 
         Intent intent = new Intent(MapRegisterActivity.this, LocationDescription.class);

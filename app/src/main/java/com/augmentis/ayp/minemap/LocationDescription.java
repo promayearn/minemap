@@ -1,13 +1,7 @@
 package com.augmentis.ayp.minemap;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -15,7 +9,6 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,14 +18,9 @@ import android.widget.Toast;
 
 import com.augmentis.ayp.minemap.model.LocationItem;
 import com.augmentis.ayp.minemap.model.MineLocation;
-import com.augmentis.ayp.minemap.model.PictureUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -87,29 +75,15 @@ public class LocationDescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sendToDatabase();
+                Intent i = new Intent(LocationDescription.this, MapMainActivity.class);
+                startActivity(i);
             }
         });
-
-//        PackageManager packageManager = getApplicationContext().getPackageManager();
-//        //call camera intent
-//        final Intent captureImageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//
-//        boolean canTakePhoto = photoFile != null && captureImageIntent.resolveActivity(packageManager) != null;
-//
-//        if(canTakePhoto){
-//            Uri uri = Uri.fromFile(photoFile);
-//
-//            Log.d(TAG, "File output at" + photoFile.getAbsolutePath());
-//            captureImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-//        }
-
 
         mButtonCamera = (FloatingActionButton) findViewById(R.id.btn_camera);
         mButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Intent captureImageIntent  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 imageFileName = "IMG_" + timeStamp + ".jpg";
