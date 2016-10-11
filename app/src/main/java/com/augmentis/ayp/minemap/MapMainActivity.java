@@ -3,9 +3,12 @@ package com.augmentis.ayp.minemap;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,6 +16,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -54,7 +59,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -290,6 +298,9 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_reload:
+                addMarker();
+                return true;
             case R.id.menu_filter:
                 filterMapTypeDialog();
                 return true;
@@ -962,7 +973,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
 
             ImageView imageView = (ImageView) myContentsView.findViewById(R.id.img_of_marker);
-            
+
             TextView t1 = ((TextView) myContentsView.findViewById(R.id.text_1));
             t1.setText("Name: " + data[0]);
             TextView t2 = ((TextView) myContentsView.findViewById(R.id.text_2));
@@ -973,6 +984,16 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             t4.setText("Description: " + data[3]);
             TextView t5 = ((TextView) myContentsView.findViewById(R.id.text_5));
             t5.setText("Date Added: " + data[4]);
+
+////            File sd = Environment.getExternalStorageDirectory();
+//            File image = new File(data[5]);
+//            Log.d(TAG, " image file :" + image);
+//
+//            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//            Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
+////            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
+//            imageView.setImageBitmap(bitmap);
+
 
             return myContentsView;
         }

@@ -51,9 +51,10 @@ public class LocationDescription extends AppCompatActivity {
     private String statusUrl;
 
     public LocationItem locationItem;
-    public Uri uri;
+//    public Uri uri;
     public String imageFileName;
     public File filePhoto;
+    public Uri uriPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,8 @@ public class LocationDescription extends AppCompatActivity {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 imageFileName = "IMG_" + timeStamp + ".jpg";
                 filePhoto = new File(Environment.getExternalStorageDirectory(), "DCIM/Camera/" + imageFileName);
-                uri = Uri.fromFile(filePhoto);
+
+                Uri uri = Uri.fromFile(filePhoto);
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -97,8 +99,8 @@ public class LocationDescription extends AppCompatActivity {
                     startActivityForResult(takePictureIntent, REQUEST_CAPTURE_PHOTO);
                 }
 
-//                startActivityForResult(Intent.createChooser(captureImageIntent, "Take a picture with"), REQUEST_CAPTURE_PHOTO);
                 Log.d(TAG, "T E S T F I L E -------------- > " + uri);
+                uriPic = uri;
 
             }
         });
@@ -109,18 +111,14 @@ public class LocationDescription extends AppCompatActivity {
         Log.d(TAG, "R E S U L T CODE : " + requestCode);
 
         if (requestCode == REQUEST_CAPTURE_PHOTO && resultCode == RESULT_OK) {
-            getContentResolver().notifyChange(uri, null);
+//            getContentResolver().notifyChange(uri, null);
 //            ContentResolver cr = getContentResolver();
+
             Log.d(TAG, " d a t a " + data);
             Bundle extras = data.getExtras();
             Bitmap bitmap = (Bitmap) extras.get("data");
             mImgView.setImageBitmap(bitmap);
-//
-//            Log.d(TAG, " u r i p a t h " + uri.getPath());
-//
-//            final Bitmap bitmap = PictureUtils.getScaledBitmap(uri.getPath(), this);
-//            mImgView.setImageBitmap(bitmap);
-//
+
         }
     }
 
@@ -152,7 +150,7 @@ public class LocationDescription extends AppCompatActivity {
             loc_lat = String.valueOf(mineLocation.getLatitude());
             loc_long = String.valueOf(mineLocation.getLongitude());
             loc_type = String.valueOf(mineLocation.getType());
-            loc_pic = String.valueOf(uri);
+            loc_pic = String.valueOf(uriPic);
 
             String strURL = "http://minemap.hol.es/add_location.php?id_user=" + id_user + "&loc_name=" + loc_name +
                     "&loc_lat=" + loc_lat + "&loc_long=" + loc_long + "&loc_type=" + loc_type + "&loc_tel=" + loc_tel +
