@@ -985,14 +985,14 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             TextView t5 = ((TextView) myContentsView.findViewById(R.id.text_5));
             t5.setText("Date Added: " + data[4]);
 
-////            File sd = Environment.getExternalStorageDirectory();
-//            File image = new File(data[5]);
-//            Log.d(TAG, " image file :" + image);
-//
-//            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//            Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
-////            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
-//            imageView.setImageBitmap(bitmap);
+//            File sd = Environment.getExternalStorageDirectory();
+            File image = new File(data[5]);
+            Log.d(TAG, " image file :" + data[5]);
+
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap bitmap = BitmapFactory.decodeFile(image.getPath(),bmOptions);
+//            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
+            imageView.setImageBitmap(bitmap);
 
 
             return myContentsView;

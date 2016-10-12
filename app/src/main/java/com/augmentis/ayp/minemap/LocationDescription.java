@@ -111,7 +111,7 @@ public class LocationDescription extends AppCompatActivity {
         Log.d(TAG, "R E S U L T CODE : " + requestCode);
 
         if (requestCode == REQUEST_CAPTURE_PHOTO && resultCode == RESULT_OK) {
-//            getContentResolver().notifyChange(uri, null);
+            getContentResolver().notifyChange(uriPic, null);
 //            ContentResolver cr = getContentResolver();
 
             Log.d(TAG, " d a t a " + data);
