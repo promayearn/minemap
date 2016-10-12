@@ -25,6 +25,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.augmentis.ayp.minemap.model.LocationItem;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -59,12 +61,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.bitmap;
 
 public class MapMainActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -90,6 +96,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private String statusUrl;
     private ArrayList<String> list1;
     private LocationItem locationItem;
+    private ImageView imageView;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -972,7 +979,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     break;
             }
 
-            ImageView imageView = (ImageView) myContentsView.findViewById(R.id.img_of_marker);
+            imageView = (ImageView) myContentsView.findViewById(R.id.img_of_marker);
 
             TextView t1 = ((TextView) myContentsView.findViewById(R.id.text_1));
             t1.setText("Name: " + data[0]);
@@ -985,17 +992,12 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             TextView t5 = ((TextView) myContentsView.findViewById(R.id.text_5));
             t5.setText("Date Added: " + data[4]);
 
-//            File sd = Environment.getExternalStorageDirectory();
-            File image = new File(data[5]);
-            Log.d(TAG, " image file :" + data[5]);
-
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap bitmap = BitmapFactory.decodeFile(image.getPath(),bmOptions);
-//            bitmap = Bitmap.createScaledBitmap(bitmap,parent.getWidth(),parent.getHeight(),true);
-            imageView.setImageBitmap(bitmap);
-
+//            textToBitmap(data[5]);
 
             return myContentsView;
         }
+
+
+
     }
 }

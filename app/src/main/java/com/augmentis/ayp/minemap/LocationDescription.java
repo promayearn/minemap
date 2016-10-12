@@ -1,14 +1,18 @@
 package com.augmentis.ayp.minemap;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +23,7 @@ import android.widget.Toast;
 import com.augmentis.ayp.minemap.model.LocationItem;
 import com.augmentis.ayp.minemap.model.MineLocation;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -54,7 +59,10 @@ public class LocationDescription extends AppCompatActivity {
 //    public Uri uri;
     public String imageFileName;
     public File filePhoto;
-    public Uri uriPic;
+    public Uri uri;
+    public String image_str;
+
+    Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,21 +94,25 @@ public class LocationDescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                imageFileName = "IMG_" + timeStamp + ".jpg";
-                filePhoto = new File(Environment.getExternalStorageDirectory(), "DCIM/Camera/" + imageFileName);
-
-                Uri uri = Uri.fromFile(filePhoto);
-
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-
+//                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//                imageFileName = "IMG_" + timeStamp + ".jpg";
+//                filePhoto = new File(Environment.getExternalStorageDirectory(), "DCIM/Camera/" + imageFileName);
+//
+//                uri = Uri.fromFile(filePhoto);
+//
+//                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//
 //                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                    startActivityForResult(takePictureIntent, REQUEST_CAPTURE_PHOTO);
-                }
+//                    startActivityForResult(takePictureIntent, REQUEST_CAPTURE_PHOTO);
+//
+//
+//                    Log.d(TAG, "T E S T F I L E -------------- > " + takePictureIntent);
+//                }
 
-                Log.d(TAG, "T E S T F I L E -------------- > " + uri);
-                uriPic = uri;
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, REQUEST_CAPTURE_PHOTO);
 
             }
         });
@@ -108,18 +120,53 @@ public class LocationDescription extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "R E S U L T CODE : " + requestCode);
+
+        Log.d(TAG, "R E S U L T CODE : " + data);
 
         if (requestCode == REQUEST_CAPTURE_PHOTO && resultCode == RESULT_OK) {
-            getContentResolver().notifyChange(uriPic, null);
-//            ContentResolver cr = getContentResolver();
+            uri = data.getData();
 
-            Log.d(TAG, " d a t a " + data);
-            Bundle extras = data.getExtras();
-            Bitmap bitmap = (Bitmap) extras.get("data");
-            mImgView.setImageBitmap(bitmap);
+            Log.d(TAG, " path u r i = " + uri);
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                mImgView.setImageBitmap(bitmap);
+                imgToBase64(bitmap);
+                Log.d(TAG, " b i t m a p --> " + bitmap);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//            Bundle extras = data.getExtras();
+//            Bitmap bitmap = (Bitmap) extras.get("data");
+//            mImgView.setImageBitmap(bitmap);
+
+//            String img = String.valueOf(bitmap);
+//
+//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//
+//            Bitmap bitmapOut = BitmapFactory.decodeFile(img);
+//            bitmapOut.compress(Bitmap.CompressFormat.JPEG, 20, stream);
+//            byte [] byte_arr = stream.toByteArray();
+//            image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+//            Log.d(TAG, " b i t m a p : d e c o d e --> " + image_str);
 
         }
+    }
+
+    public void imgToBase64(Bitmap bm) throws IOException {
+        ByteArrayOutputStream out = null;
+
+            out = new ByteArrayOutputStream();
+            // compress image
+            bm.compress(Bitmap.CompressFormat.JPEG, 10, out);
+
+            out.flush();
+            out.close();
+
+            byte[] imgBytes = out.toByteArray();
+            image_str = Base64.encodeToString(imgBytes, Base64.DEFAULT);
+//            Log.d(TAG, " s t r i n g -- > image_str : " + image_str);
     }
 
     public void sendToDatabase() {
@@ -150,7 +197,10 @@ public class LocationDescription extends AppCompatActivity {
             loc_lat = String.valueOf(mineLocation.getLatitude());
             loc_long = String.valueOf(mineLocation.getLongitude());
             loc_type = String.valueOf(mineLocation.getType());
-            loc_pic = String.valueOf(uriPic);
+
+            loc_pic = String.valueOf(uri);
+
+            Log.d(TAG , " loc pic from uri =" +loc_pic);
 
             String strURL = "http://minemap.hol.es/add_location.php?id_user=" + id_user + "&loc_name=" + loc_name +
                     "&loc_lat=" + loc_lat + "&loc_long=" + loc_long + "&loc_type=" + loc_type + "&loc_tel=" + loc_tel +
@@ -168,7 +218,6 @@ public class LocationDescription extends AppCompatActivity {
             }
 
             statusUrl = strJson;
-            Log.e("Update : ", strJson);
 
             return statusUrl;
         }
