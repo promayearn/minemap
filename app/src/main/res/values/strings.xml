@@ -27,4 +27,7 @@
     <string name="type">Type</string>
     <string name="btn_ok">OK</string>
     <string name="reload">Reload</string>
+    <string name="string_choose_file">Choose Image</string>
+    <string name="string_upload_image">Upload Image</string>
+    <string name="string_view_image">Show Image</string>
 </resources>
