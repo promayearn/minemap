@@ -331,7 +331,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                         Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()),
                         LocationItem.locationItems.get(i).getLoc_name() + "," + LocationItem.locationItems.get(i).getLoc_type()
                                 + "," + LocationItem.locationItems.get(i).getLoc_tel() + "," + LocationItem.locationItems.get(i).getLoc_des()
-                                + "," + LocationItem.locationItems.get(i).getLoc_date() + "," + LocationItem.locationItems.get(i).getLoc_pic());
+                                + "," + LocationItem.locationItems.get(i).getLoc_date());
                 Log.d(TAG, "Add Marker");
             }
         }
@@ -345,6 +345,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.marker_filter_dialog);
+        dialog.setTitle(R.string.select_filter_please);
 
         okTextView = (TextView) dialog.findViewById(R.id.text_ok);
         okTextView.setOnClickListener(new View.OnClickListener() {
@@ -845,7 +846,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 JSONObject json = new JSONObject(strJson);
                 String success = json.getString("status");
 
-                if (success.equals("OK") == true) {
+                if (success.equals("OK")) {
                     statusUrl = "OK";
 
                     JSONArray Json_array_size = json.getJSONArray("result");
@@ -861,13 +862,12 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                         locationItem.setLoc_type(object.getString("loc_type"));
                         locationItem.setLoc_tel(object.getString("loc_tel"));
                         locationItem.setLoc_des(object.getString("loc_des"));
-                        locationItem.setLoc_pic(object.getString("loc_pic"));
                         locationItem.setLoc_date(object.getString("loc_date"));
                         LocationItem.locationItems.add(locationItem);
 
                     }
                 } else {
-                    if (success.equals("NODATA") == true) {
+                    if (success.equals("NODATA")) {
                         statusUrl = "NODATA";
                     }
                 }
@@ -978,9 +978,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     type = "Work Place";
                     break;
             }
-
-            imageView = (ImageView) myContentsView.findViewById(R.id.img_of_marker);
-
+            
             TextView t1 = ((TextView) myContentsView.findViewById(R.id.text_1));
             t1.setText("Name: " + data[0]);
             TextView t2 = ((TextView) myContentsView.findViewById(R.id.text_2));

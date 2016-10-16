@@ -18,7 +18,7 @@
     <string name="search">Search</string>
     <string name="map_type">Change map type</string>
     <string name="btn_save">Save</string>
-    <string name="location_description">Location Description</string>
+    <string name="location_description">Add Description</string>
     <string name="hint_date">Date</string>
     <string name="hint_tel">Tel</string>
     <string name="hint_des">Description</string>
@@ -30,4 +30,6 @@
     <string name="string_choose_file">Choose Image</string>
     <string name="string_upload_image">Upload Image</string>
     <string name="string_view_image">Show Image</string>
+    <string name="select_marker_please">Please select marker</string>
+    <string name="select_filter_please">Please select filter</string>
 </resources>

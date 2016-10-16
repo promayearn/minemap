@@ -47,15 +47,25 @@
             android:label="@string/title_activity_map" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".LoginActivity"></activity>
+            android:parentActivityName=".LoginActivity">
+
+        </activity>
         <activity
             android:name=".LocationDescription"
             android:label="@string/location_description"
-            android:parentActivityName=".MapRegisterActivity"></activity>
+            android:parentActivityName=".MapRegisterActivity">
+
+        </activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -66,13 +76,11 @@
 
         <activity
             android:name=".MapRegisterActivity"
-            android:parentActivityName=".MapMainActivity"></activity>
-        <activity android:name=".TestUploadImage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:parentActivityName=".MapMainActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".TestUploadImage">
+
         </activity>
         <activity android:name=".ViewImage"></activity>
     </application>

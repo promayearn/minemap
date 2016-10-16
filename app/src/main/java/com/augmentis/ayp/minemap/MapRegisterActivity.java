@@ -390,6 +390,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.marker_picker_dialog);
+        dialog.setTitle(R.string.select_marker_please);
 
         l1 = (LinearLayout) dialog.findViewById(R.id.marker_1);
         l1.setOnClickListener(new View.OnClickListener() {
