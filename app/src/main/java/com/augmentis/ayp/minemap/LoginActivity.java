@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MapMainActivity.class);
                 startActivity(intent);
 
-                MineMapPreference.setStoredSearchKey(getApplicationContext(), id_user);
+                MinemapPreference.setStoredSearchKey(getApplicationContext(), id_user);
             } else {
                 if (s.equals("NODATA") == true) {
                     Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();

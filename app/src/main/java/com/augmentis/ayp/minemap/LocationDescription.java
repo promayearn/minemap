@@ -2,8 +2,6 @@ package com.augmentis.ayp.minemap;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -81,7 +79,7 @@ public class LocationDescription extends AppCompatActivity {
                 java.util.Locale.getDefault());
         Date date = new Date();
 
-        id_user = MineMapPreference.getStoredSearchKey(getApplicationContext());
+        id_user = MinemapPreference.getStoredSearchKey(getApplicationContext());
         loc_name = mInputName.getText().toString();
         loc_date = DateFormat.format(date);
         loc_tel = mInputTel.getText().toString();
