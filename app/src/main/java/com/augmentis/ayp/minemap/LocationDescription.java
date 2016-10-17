@@ -41,6 +41,8 @@ public class LocationDescription extends AppCompatActivity {
     private EditText mInputName;
     private EditText mInputTel;
     private EditText mInputDes;
+    private EditText mInputOpen;
+    private EditText mInputClose;
 
 
     private MineLocation mineLocation;
@@ -49,11 +51,13 @@ public class LocationDescription extends AppCompatActivity {
     private String loc_date;
     private String loc_tel;
     private String loc_des;
-    private String loc_lat;
-    private String loc_long;
+    protected String loc_lat;
+    protected String loc_long;
+    protected String loc_open;
+    protected String loc_close;
     private String id_user;
-    private String loc_type;
-    private String statusUrl;
+    protected String loc_type;
+    protected String statusUrl;
 
 
     public Uri uri;
@@ -69,7 +73,7 @@ public class LocationDescription extends AppCompatActivity {
         mineLocation = MineLocation.getInstance();
 
         ImageView img = (ImageView) findViewById(R.id.imageView2);
-        Glide.with(this).load(R.drawable.travelusaa).into(img);
+        Glide.with(this).load(R.drawable.map_description).into(img);
 
         Log.d(TAG, "lat, lng : " + mineLocation.getLatitude() + ", " +
                 mineLocation.getLongitude() + ", " + mineLocation.getType());
@@ -77,6 +81,8 @@ public class LocationDescription extends AppCompatActivity {
         mInputName = (EditText) findViewById(R.id.input_name);
         mInputTel = (EditText) findViewById(R.id.input_tel);
         mInputDes = (EditText) findViewById(R.id.input_des);
+        mInputOpen = (EditText) findViewById(R.id.edtOpen);
+        mInputClose = (EditText) findViewById(R.id.edtClose);
 
         Button mButtonSave = (Button) findViewById(R.id.btn_save);
         mButtonSave.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +106,10 @@ public class LocationDescription extends AppCompatActivity {
         loc_date = DateFormat.format(date);
         loc_tel = mInputTel.getText().toString();
         loc_des = mInputDes.getText().toString();
+        loc_open = mInputOpen.getText().toString();
+        loc_close = mInputClose.getText().toString();
 
-        new sendToBackground().execute(id_user, loc_name, loc_date, loc_tel, loc_des);
+        new sendToBackground().execute(id_user, loc_name, loc_date, loc_tel, loc_des, loc_open, loc_close);
     }
 
     public class sendToBackground extends AsyncTask<String, String, String> {
@@ -116,6 +124,8 @@ public class LocationDescription extends AppCompatActivity {
             loc_date = strings[2];
             loc_tel = strings[3];
             loc_des = strings[4];
+            loc_open = strings[5];
+            loc_close = strings[6];
             loc_lat = String.valueOf(mineLocation.getLatitude());
             loc_long = String.valueOf(mineLocation.getLongitude());
             loc_type = String.valueOf(mineLocation.getType());
@@ -123,7 +133,7 @@ public class LocationDescription extends AppCompatActivity {
 
             String strURL = "http://minemap.hol.es/add_location.php?id_user=" + id_user + "&loc_name=" + loc_name +
                     "&loc_lat=" + loc_lat + "&loc_long=" + loc_long + "&loc_type=" + loc_type + "&loc_tel=" + loc_tel +
-                    "&loc_des=" + loc_des + "&loc_date=" + loc_date;
+                    "&loc_des=" + loc_des + "&loc_date=" + loc_date + "&loc_open=" + loc_open + "&loc_close=" + loc_close;
 
             JsonHttp jsonHttp = new JsonHttp();
             String strJson = null;

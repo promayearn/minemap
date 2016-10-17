@@ -20,6 +20,8 @@ public class LocationItem {
     private String loc_des;
     private String loc_pic;
     private String loc_date;
+    private String loc_open;
+    private String loc_close;
 
 
     public LocationItem() {
@@ -33,6 +35,8 @@ public class LocationItem {
         loc_des = "";
         loc_pic = "";
         loc_date = "";
+        loc_open = "";
+        loc_close = "";
     }
 
     protected static LocationItem instance;
@@ -122,5 +126,21 @@ public class LocationItem {
 
     public void setLoc_date(String loc_date) {
         this.loc_date = loc_date;
+    }
+
+    public String getLoc_open() {
+        return loc_open;
+    }
+
+    public void setLoc_open(String loc_open) {
+        this.loc_open = loc_open;
+    }
+
+    public String getLoc_close() {
+        return loc_close;
+    }
+
+    public void setLoc_close(String loc_close) {
+        this.loc_close = loc_close;
     }
 }

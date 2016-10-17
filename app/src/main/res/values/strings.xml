@@ -20,7 +20,7 @@
     <string name="btn_save">Save</string>
     <string name="location_description">Add Description</string>
     <string name="hint_date">Date</string>
-    <string name="hint_tel">Tel</string>
+    <string name="hint_tel">Telephone</string>
     <string name="hint_des">Description</string>
     <string name="next">Next</string>
     <string name="logout">Logout</string>
@@ -32,4 +32,12 @@
     <string name="string_view_image">Show Image</string>
     <string name="select_marker_please">Please select marker</string>
     <string name="select_filter_please">Please select filter</string>
+    <string name="date">Date added</string>
+
+    <string name="close">Close:  </string>
+    <string name="close2">Close </string>
+    <string name="open">Open:  </string>
+    <string name="open2">Open </string>
+    <string name="hint_open">08:00</string>
+    <string name="hint_close">18:00</string>
 </resources>

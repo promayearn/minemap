@@ -94,9 +94,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private String mSearchKey;
     private String id_user;
     private String statusUrl;
-    private ArrayList<String> list1;
     private LocationItem locationItem;
-    private ImageView imageView;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -331,7 +329,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                         Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()),
                         LocationItem.locationItems.get(i).getLoc_name() + "," + LocationItem.locationItems.get(i).getLoc_type()
                                 + "," + LocationItem.locationItems.get(i).getLoc_tel() + "," + LocationItem.locationItems.get(i).getLoc_des()
-                                + "," + LocationItem.locationItems.get(i).getLoc_date());
+                                + "," + LocationItem.locationItems.get(i).getLoc_date() + "," + LocationItem.locationItems.get(i).getLoc_open()
+                                + "," + LocationItem.locationItems.get(i).getLoc_close());
                 Log.d(TAG, "Add Marker");
             }
         }
@@ -863,6 +862,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                         locationItem.setLoc_tel(object.getString("loc_tel"));
                         locationItem.setLoc_des(object.getString("loc_des"));
                         locationItem.setLoc_date(object.getString("loc_date"));
+                        locationItem.setLoc_open(object.getString("loc_open"));
+                        locationItem.setLoc_close(object.getString("loc_close"));
                         LocationItem.locationItems.add(locationItem);
 
                     }
@@ -980,17 +981,19 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
             
             TextView t1 = ((TextView) myContentsView.findViewById(R.id.text_1));
-            t1.setText("Name: " + data[0]);
+            t1.setText(data[0]);
             TextView t2 = ((TextView) myContentsView.findViewById(R.id.text_2));
-            t2.setText("Type: " + type);
+            t2.setText(type);
             TextView t3 = ((TextView) myContentsView.findViewById(R.id.text_3));
-            t3.setText("Tel: " + data[2]);
+            t3.setText(data[2]);
             TextView t4 = ((TextView) myContentsView.findViewById(R.id.text_4));
-            t4.setText("Description: " + data[3]);
+            t4.setText(data[3]);
             TextView t5 = ((TextView) myContentsView.findViewById(R.id.text_5));
-            t5.setText("Date Added: " + data[4]);
-
-//            textToBitmap(data[5]);
+            t5.setText(data[4]);
+            TextView t6 = ((TextView) myContentsView.findViewById(R.id.tvOpen));
+            t6.setText(data[5]);
+            TextView t7 = ((TextView) myContentsView.findViewById(R.id.tvClose));
+            t7.setText(data[6]);
 
             return myContentsView;
         }
