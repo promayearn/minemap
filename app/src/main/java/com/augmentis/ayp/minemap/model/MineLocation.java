@@ -1,18 +1,10 @@
 package com.augmentis.ayp.minemap.model;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.os.Environment;
-import android.util.Log;
-
-import java.io.File;
-
 /**
  * Created by Chayanit on 9/30/2016.
  */
 
 public class MineLocation {
-    private static final String TAG = "MineLocation";
 
     private double latitude;
     private double longitude;
@@ -23,10 +15,8 @@ public class MineLocation {
         latitude = 0;
         longitude = 0;
         type = 1;
-
     }
 
-    //ส่ง Instance อื่นๆ
     private static MineLocation instance;
 
     public static MineLocation getInstance() {

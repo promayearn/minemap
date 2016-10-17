@@ -79,10 +79,6 @@
             android:parentActivityName=".MapMainActivity">
 
         </activity>
-        <activity android:name=".TestUploadImage">
-
-        </activity>
-        <activity android:name=".ViewImage"></activity>
     </application>
 
 </manifest>

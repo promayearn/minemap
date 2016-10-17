@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:padding="5dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <View
             android:id="@+id/view"
@@ -18,139 +18,139 @@
             android:background="@color/colorControlActivated" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="125dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/hint_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:id="@+id/textView6" />
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:id="@+id/textView5" />
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/hint_tel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:id="@+id/textView4" />
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/hint_des"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:id="@+id/textView3" />
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:text="@string/date"
+                    android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/date"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:id="@+id/textView2" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                    android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/text_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/text_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/text_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/text_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/text_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/text_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/text_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="@string/open"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
                     android:id="@+id/textView10"
-                    android:textStyle="bold"
-                    android:layout_weight="0" />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
+                    android:layout_weight="0"
+                    android:text="@string/open"
                     android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/tvOpen"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:text="@string/close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:id="@+id/textView8"
-                    android:textStyle="bold"
-                    android:paddingLeft="38dp"
-                    android:layout_weight="0" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:layout_weight="1"
                     android:paddingLeft="5dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:paddingLeft="38dp"
+                    android:text="@string/close"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/tvClose"
-                    android:layout_weight="1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -162,5 +162,4 @@
             android:background="@color/colorControlActivated" />
 
     </LinearLayout>
-
 </LinearLayout>

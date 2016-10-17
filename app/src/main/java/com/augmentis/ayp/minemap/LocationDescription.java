@@ -1,21 +1,12 @@
 package com.augmentis.ayp.minemap;
 
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,19 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.augmentis.ayp.minemap.model.LocationItem;
 import com.augmentis.ayp.minemap.model.MineLocation;
 import com.bumptech.glide.Glide;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LocationDescription extends AppCompatActivity {
 
-    private static final int REQUEST_CAPTURE_PHOTO = 2;
     private static String TAG = "LocationDescription";
 
     private EditText mInputName;
@@ -43,7 +30,6 @@ public class LocationDescription extends AppCompatActivity {
     private EditText mInputDes;
     private EditText mInputOpen;
     private EditText mInputClose;
-
 
     private MineLocation mineLocation;
 
@@ -58,12 +44,6 @@ public class LocationDescription extends AppCompatActivity {
     private String id_user;
     protected String loc_type;
     protected String statusUrl;
-
-
-    public Uri uri;
-    public String image_str;
-
-    Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +81,7 @@ public class LocationDescription extends AppCompatActivity {
                 java.util.Locale.getDefault());
         Date date = new Date();
 
-        id_user = MinemapPreference.getStoredSearchKey(getApplicationContext());
+        id_user = MineMapPreference.getStoredSearchKey(getApplicationContext());
         loc_name = mInputName.getText().toString();
         loc_date = DateFormat.format(date);
         loc_tel = mInputTel.getText().toString();
@@ -167,5 +147,4 @@ public class LocationDescription extends AppCompatActivity {
 
         }
     }
-
 }

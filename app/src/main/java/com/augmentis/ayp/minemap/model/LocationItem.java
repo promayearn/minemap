@@ -25,6 +25,7 @@ public class LocationItem {
 
 
     public LocationItem() {
+
         id_user = "";
         loc_id = "";
         loc_name = "";
@@ -40,13 +41,6 @@ public class LocationItem {
     }
 
     protected static LocationItem instance;
-
-    public static LocationItem getInstance() {
-        if (instance == null) {
-            instance = new LocationItem();
-        }
-        return instance;
-    }
 
     public String getId_user() {
         return id_user;

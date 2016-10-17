@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
@@ -74,8 +73,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 submitForm();
-//                Intent intent = new Intent(RegisterActivity.this, LocationDescription.class);
-//                startActivity(intent);
             }
         });
     }
@@ -107,7 +104,6 @@ public class RegisterActivity extends AppCompatActivity {
     public boolean validateName() {
         if (inputName.getText().toString().trim().isEmpty()) {
             inputLayoutName.setError(getString(R.string.err_msg_name));
-//            requestFocus(inputName);
             return false;
         } else {
             inputLayoutName.setErrorEnabled(false);
@@ -121,7 +117,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (email.isEmpty() || !isValidEmail(email)) {
             inputLayoutEmail.setError(getString(R.string.err_msg_email));
-//            requestFocus(inputEmail);
             return false;
         } else {
 
@@ -199,9 +194,6 @@ public class RegisterActivity extends AppCompatActivity {
                 case R.id.input_password:
                     validatePassword();
                     break;
-//                case R.id.input_confirm:
-//                    checkPassword();
-//                    break;
             }
         }
     }

@@ -8,8 +8,7 @@ import android.preference.PreferenceManager;
  * Created by Apinya on 9/30/2016.
  */
 
-public class MinemapPreference {
-
+public class MineMapPreference {
 
     private static final String PREF_SEARCH_KEY = "minemappref";
 

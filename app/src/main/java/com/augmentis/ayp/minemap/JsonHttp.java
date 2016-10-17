@@ -48,6 +48,4 @@ public class JsonHttp {
             connection.disconnect();
         }
     }
-
-
 }

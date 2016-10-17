@@ -817,7 +817,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     public void sendToDatabase() {
 
-        id_user = MinemapPreference.getStoredSearchKey(getApplicationContext());
+        id_user = MineMapPreference.getStoredSearchKey(getApplicationContext());
 
         new sendToBackground().execute(id_user);
     }
