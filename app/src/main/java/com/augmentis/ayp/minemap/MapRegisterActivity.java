@@ -57,7 +57,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
     private UiSettings mUiSettings;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
-    private FloatingActionButton fab;
+    private FloatingActionButton mFloatButton;
 
     private LatLng latLng;
     private TextView mTapTextView;
@@ -76,9 +76,9 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
 
         setContentView(R.layout.activity_map_register);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab_marker);
+        mFloatButton = (FloatingActionButton) findViewById(R.id.fab_marker);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFloatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showMarkerSelectorDialog();
@@ -384,16 +384,19 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
 
     private void showMarkerSelectorDialog() {
 
-        LinearLayout l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12,
-                l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24;
+        LinearLayout mLinearLayout1, mLinearLayout2, mLinearLayout3, mLinearLayout4, mLinearLayout5,
+                mLinearLayout6, mLinearLayout7, mLinearLayout8, mLinearLayout9, mLinearLayout10,
+                mLinearLayout11, mLinearLayout12, mLinearLayout13, mLinearLayout14, mLinearLayout15,
+                mLinearLayout16, mLinearLayout17, mLinearLayout18, mLinearLayout19, mLinearLayout20,
+                mLinearLayout21, mLinearLayout22, mLinearLayout23, mLinearLayout24;
 
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.marker_picker_dialog);
         dialog.setTitle(R.string.select_marker_please);
 
-        l1 = (LinearLayout) dialog.findViewById(R.id.marker_1);
-        l1.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout1 = (LinearLayout) dialog.findViewById(R.id.marker_1);
+        mLinearLayout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 1;
@@ -401,8 +404,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l2 = (LinearLayout) dialog.findViewById(R.id.marker_2);
-        l2.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout2 = (LinearLayout) dialog.findViewById(R.id.marker_2);
+        mLinearLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 2;
@@ -410,8 +413,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l3 = (LinearLayout) dialog.findViewById(R.id.marker_3);
-        l3.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout3 = (LinearLayout) dialog.findViewById(R.id.marker_3);
+        mLinearLayout3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 3;
@@ -419,8 +422,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l4 = (LinearLayout) dialog.findViewById(R.id.marker_4);
-        l4.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout4 = (LinearLayout) dialog.findViewById(R.id.marker_4);
+        mLinearLayout4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 4;
@@ -428,8 +431,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l5 = (LinearLayout) dialog.findViewById(R.id.marker_5);
-        l5.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout5 = (LinearLayout) dialog.findViewById(R.id.marker_5);
+        mLinearLayout5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 5;
@@ -437,8 +440,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l6 = (LinearLayout) dialog.findViewById(R.id.marker_6);
-        l6.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout6 = (LinearLayout) dialog.findViewById(R.id.marker_6);
+        mLinearLayout6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 6;
@@ -446,8 +449,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l7 = (LinearLayout) dialog.findViewById(R.id.marker_7);
-        l7.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout7 = (LinearLayout) dialog.findViewById(R.id.marker_7);
+        mLinearLayout7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 7;
@@ -455,8 +458,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l8 = (LinearLayout) dialog.findViewById(R.id.marker_8);
-        l8.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout8 = (LinearLayout) dialog.findViewById(R.id.marker_8);
+        mLinearLayout8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 8;
@@ -464,8 +467,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l9 = (LinearLayout) dialog.findViewById(R.id.marker_9);
-        l9.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout9 = (LinearLayout) dialog.findViewById(R.id.marker_9);
+        mLinearLayout9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 9;
@@ -473,8 +476,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l10 = (LinearLayout) dialog.findViewById(R.id.marker_10);
-        l10.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout10 = (LinearLayout) dialog.findViewById(R.id.marker_10);
+        mLinearLayout10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 10;
@@ -482,8 +485,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l11 = (LinearLayout) dialog.findViewById(R.id.marker_11);
-        l11.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout11 = (LinearLayout) dialog.findViewById(R.id.marker_11);
+        mLinearLayout11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 11;
@@ -491,8 +494,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l12 = (LinearLayout) dialog.findViewById(R.id.marker_12);
-        l12.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout12 = (LinearLayout) dialog.findViewById(R.id.marker_12);
+        mLinearLayout12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 12;
@@ -500,8 +503,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l13 = (LinearLayout) dialog.findViewById(R.id.marker_13);
-        l13.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout13 = (LinearLayout) dialog.findViewById(R.id.marker_13);
+        mLinearLayout13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 13;
@@ -509,8 +512,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l14 = (LinearLayout) dialog.findViewById(R.id.marker_14);
-        l14.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout14 = (LinearLayout) dialog.findViewById(R.id.marker_14);
+        mLinearLayout14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 14;
@@ -518,8 +521,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l15 = (LinearLayout) dialog.findViewById(R.id.marker_15);
-        l15.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout15 = (LinearLayout) dialog.findViewById(R.id.marker_15);
+        mLinearLayout15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 15;
@@ -527,8 +530,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l16 = (LinearLayout) dialog.findViewById(R.id.marker_16);
-        l16.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout16 = (LinearLayout) dialog.findViewById(R.id.marker_16);
+        mLinearLayout16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 16;
@@ -536,8 +539,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l17 = (LinearLayout) dialog.findViewById(R.id.marker_17);
-        l17.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout17 = (LinearLayout) dialog.findViewById(R.id.marker_17);
+        mLinearLayout17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 17;
@@ -545,8 +548,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l18 = (LinearLayout) dialog.findViewById(R.id.marker_18);
-        l18.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout18 = (LinearLayout) dialog.findViewById(R.id.marker_18);
+        mLinearLayout18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 18;
@@ -554,8 +557,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l19 = (LinearLayout) dialog.findViewById(R.id.marker_19);
-        l19.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout19 = (LinearLayout) dialog.findViewById(R.id.marker_19);
+        mLinearLayout19.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 19;
@@ -563,8 +566,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l20 = (LinearLayout) dialog.findViewById(R.id.marker_20);
-        l20.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout20 = (LinearLayout) dialog.findViewById(R.id.marker_20);
+        mLinearLayout20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 20;
@@ -572,8 +575,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l21 = (LinearLayout) dialog.findViewById(R.id.marker_21);
-        l21.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout21 = (LinearLayout) dialog.findViewById(R.id.marker_21);
+        mLinearLayout21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 21;
@@ -581,8 +584,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l22 = (LinearLayout) dialog.findViewById(R.id.marker_22);
-        l22.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout22 = (LinearLayout) dialog.findViewById(R.id.marker_22);
+        mLinearLayout22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 22;
@@ -590,8 +593,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l23 = (LinearLayout) dialog.findViewById(R.id.marker_23);
-        l23.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout23 = (LinearLayout) dialog.findViewById(R.id.marker_23);
+        mLinearLayout23.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 23;
@@ -599,8 +602,8 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 addMerkerToGoogleMap(lat, lng);
             }
         });
-        l24 = (LinearLayout) dialog.findViewById(R.id.marker_24);
-        l24.setOnClickListener(new View.OnClickListener() {
+        mLinearLayout24 = (LinearLayout) dialog.findViewById(R.id.marker_24);
+        mLinearLayout24.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 markerType = 24;

@@ -118,7 +118,6 @@
                 android:background="@color/colorControlActivated"
                 android:text="@string/btn_register"
                 android:textColor="@android:color/white" />
-
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

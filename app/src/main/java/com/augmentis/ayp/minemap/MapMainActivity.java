@@ -87,7 +87,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private UiSettings mUiSettings;
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
-    private FloatingActionButton fab;
+    private FloatingActionButton mFloatButton;
     private boolean[] filter = new boolean[24];
 
     private LatLng latLng;
@@ -108,9 +108,9 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
         setContentView(R.layout.activity_map_main);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        mFloatButton = (FloatingActionButton) findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFloatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MapMainActivity.this, MapRegisterActivity.class);
@@ -281,8 +281,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 Log.d(TAG, "Query text changing: " + newText);
                 return false;
             }
-
-
         });
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
@@ -338,8 +336,9 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     private void filterMapTypeDialog() {
 
-        CheckBox c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12,
-                c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24;
+        CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8,
+                checkBox9, checkBox10, checkBox11, checkBox12, checkBox13, checkBox14, checkBox15, checkBox16,
+                checkBox17, checkBox18, checkBox19, checkBox20, checkBox21, checkBox22, checkBox23, checkBox24;
         TextView okTextView;
 
         final Dialog dialog = new Dialog(this);
@@ -356,270 +355,269 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
         });
 
-        c1 = (CheckBox) dialog.findViewById(R.id.checkbox_1);
+        checkBox1 = (CheckBox) dialog.findViewById(R.id.checkbox_1);
         if (filter[0]) {
-            c1.setChecked(filter[0]);
+            checkBox1.setChecked(filter[0]);
         }
-        c1.setOnClickListener(new View.OnClickListener() {
+        checkBox1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[0] = !filter[0];
             }
         });
 
-        c2 = (CheckBox) dialog.findViewById(R.id.checkbox_2);
+        checkBox2 = (CheckBox) dialog.findViewById(R.id.checkbox_2);
         if (filter[1]) {
-            c2.setChecked(filter[1]);
+            checkBox2.setChecked(filter[1]);
         }
-        c2.setOnClickListener(new View.OnClickListener() {
+        checkBox2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[1] = !filter[1];
             }
         });
 
-        c3 = (CheckBox) dialog.findViewById(R.id.checkbox_3);
+        checkBox3 = (CheckBox) dialog.findViewById(R.id.checkbox_3);
         if (filter[2]) {
-            c3.setChecked(filter[2]);
+            checkBox3.setChecked(filter[2]);
         }
-        c3.setOnClickListener(new View.OnClickListener() {
+        checkBox3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[2] = !filter[2];
             }
         });
 
-        c4 = (CheckBox) dialog.findViewById(R.id.checkbox_4);
+        checkBox4 = (CheckBox) dialog.findViewById(R.id.checkbox_4);
         if (filter[3]) {
-            c4.setChecked(filter[3]);
+            checkBox4.setChecked(filter[3]);
         }
-        c4.setOnClickListener(new View.OnClickListener() {
+        checkBox4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[3] = !filter[3];
             }
         });
 
-        c5 = (CheckBox) dialog.findViewById(R.id.checkbox_5);
+        checkBox5 = (CheckBox) dialog.findViewById(R.id.checkbox_5);
         if (filter[4]) {
-            c5.setChecked(filter[4]);
+            checkBox5.setChecked(filter[4]);
         }
-        c5.setOnClickListener(new View.OnClickListener() {
+        checkBox5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[4] = !filter[4];
             }
         });
 
-        c6 = (CheckBox) dialog.findViewById(R.id.checkbox_6);
+        checkBox6 = (CheckBox) dialog.findViewById(R.id.checkbox_6);
         if (filter[5]) {
-            c6.setChecked(filter[5]);
+            checkBox6.setChecked(filter[5]);
         }
-        c6.setOnClickListener(new View.OnClickListener() {
+        checkBox6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[5] = !filter[5];
             }
         });
 
-        c7 = (CheckBox) dialog.findViewById(R.id.checkbox_7);
+        checkBox7 = (CheckBox) dialog.findViewById(R.id.checkbox_7);
         if (filter[6]) {
-            c7.setChecked(filter[6]);
+            checkBox7.setChecked(filter[6]);
         }
-        c7.setOnClickListener(new View.OnClickListener() {
+        checkBox7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[6] = !filter[6];
             }
         });
 
-        c8 = (CheckBox) dialog.findViewById(R.id.checkbox_8);
+        checkBox8 = (CheckBox) dialog.findViewById(R.id.checkbox_8);
         if (filter[7]) {
-            c8.setChecked(filter[7]);
+            checkBox8.setChecked(filter[7]);
         }
-        c8.setOnClickListener(new View.OnClickListener() {
+        checkBox8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[7] = !filter[7];
             }
         });
 
-        c9 = (CheckBox) dialog.findViewById(R.id.checkbox_9);
+        checkBox9 = (CheckBox) dialog.findViewById(R.id.checkbox_9);
         if (filter[8]) {
-            c9.setChecked(filter[8]);
+            checkBox9.setChecked(filter[8]);
         }
-        c9.setOnClickListener(new View.OnClickListener() {
+        checkBox9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[8] = !filter[8];
             }
         });
 
-        c10 = (CheckBox) dialog.findViewById(R.id.checkbox_10);
+        checkBox10 = (CheckBox) dialog.findViewById(R.id.checkbox_10);
         if (filter[9]) {
-            c10.setChecked(filter[9]);
+            checkBox10.setChecked(filter[9]);
         }
-        c10.setOnClickListener(new View.OnClickListener() {
+        checkBox10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[9] = !filter[9];
             }
         });
 
-        c11 = (CheckBox) dialog.findViewById(R.id.checkbox_11);
+        checkBox11 = (CheckBox) dialog.findViewById(R.id.checkbox_11);
         if (filter[10]) {
-            c11.setChecked(filter[10]);
+            checkBox11.setChecked(filter[10]);
         }
-        c11.setOnClickListener(new View.OnClickListener() {
+        checkBox11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[10] = !filter[10];
             }
         });
 
-        c12 = (CheckBox) dialog.findViewById(R.id.checkbox_12);
+        checkBox12 = (CheckBox) dialog.findViewById(R.id.checkbox_12);
         if (filter[11]) {
-            c12.setChecked(filter[11]);
+            checkBox12.setChecked(filter[11]);
         }
-        c12.setOnClickListener(new View.OnClickListener() {
+        checkBox12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[11] = !filter[11];
             }
         });
 
-        c13 = (CheckBox) dialog.findViewById(R.id.checkbox_13);
+        checkBox13 = (CheckBox) dialog.findViewById(R.id.checkbox_13);
         if (filter[12]) {
-            c13.setChecked(filter[12]);
+            checkBox13.setChecked(filter[12]);
         }
-        c13.setOnClickListener(new View.OnClickListener() {
+        checkBox13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[12] = !filter[12];
             }
         });
 
-        c14 = (CheckBox) dialog.findViewById(R.id.checkbox_14);
+        checkBox14 = (CheckBox) dialog.findViewById(R.id.checkbox_14);
         if (filter[13]) {
-            c14.setChecked(filter[13]);
+            checkBox14.setChecked(filter[13]);
         }
-        c14.setOnClickListener(new View.OnClickListener() {
+        checkBox14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[13] = !filter[13];
             }
         });
 
-        c15 = (CheckBox) dialog.findViewById(R.id.checkbox_15);
+        checkBox15 = (CheckBox) dialog.findViewById(R.id.checkbox_15);
         if (filter[14]) {
-            c15.setChecked(filter[14]);
+            checkBox15.setChecked(filter[14]);
         }
-        c15.setOnClickListener(new View.OnClickListener() {
+        checkBox15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[14] = !filter[14];
             }
         });
 
-        c16 = (CheckBox) dialog.findViewById(R.id.checkbox_16);
+        checkBox16 = (CheckBox) dialog.findViewById(R.id.checkbox_16);
         if (filter[15]) {
-            c16.setChecked(filter[15]);
+            checkBox16.setChecked(filter[15]);
         }
-        c16.setOnClickListener(new View.OnClickListener() {
+        checkBox16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[15] = !filter[15];
             }
         });
 
-        c17 = (CheckBox) dialog.findViewById(R.id.checkbox_17);
+        checkBox17 = (CheckBox) dialog.findViewById(R.id.checkbox_17);
         if (filter[16]) {
-            c17.setChecked(filter[16]);
+            checkBox17.setChecked(filter[16]);
         }
-        c17.setOnClickListener(new View.OnClickListener() {
+        checkBox17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[16] = !filter[16];
             }
         });
 
-        c18 = (CheckBox) dialog.findViewById(R.id.checkbox_18);
+        checkBox18 = (CheckBox) dialog.findViewById(R.id.checkbox_18);
         if (filter[17]) {
-            c18.setChecked(filter[17]);
+            checkBox18.setChecked(filter[17]);
         }
-        c18.setOnClickListener(new View.OnClickListener() {
+        checkBox18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[17] = !filter[17];
             }
         });
 
-        c19 = (CheckBox) dialog.findViewById(R.id.checkbox_19);
+        checkBox19 = (CheckBox) dialog.findViewById(R.id.checkbox_19);
         if (filter[18]) {
-            c19.setChecked(filter[18]);
+            checkBox19.setChecked(filter[18]);
         }
-        c19.setOnClickListener(new View.OnClickListener() {
+        checkBox19.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[18] = !filter[18];
             }
         });
 
-        c20 = (CheckBox) dialog.findViewById(R.id.checkbox_20);
+        checkBox20 = (CheckBox) dialog.findViewById(R.id.checkbox_20);
         if (filter[19]) {
-            c20.setChecked(filter[19]);
+            checkBox20.setChecked(filter[19]);
         }
-        c20.setOnClickListener(new View.OnClickListener() {
+        checkBox20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[19] = !filter[19];
             }
         });
 
-        c21 = (CheckBox) dialog.findViewById(R.id.checkbox_21);
+        checkBox21 = (CheckBox) dialog.findViewById(R.id.checkbox_21);
         if (filter[20]) {
-            c21.setChecked(filter[20]);
+            checkBox21.setChecked(filter[20]);
         }
-        c21.setOnClickListener(new View.OnClickListener() {
+        checkBox21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[20] = !filter[20];
             }
         });
 
-        c22 = (CheckBox) dialog.findViewById(R.id.checkbox_22);
+        checkBox22 = (CheckBox) dialog.findViewById(R.id.checkbox_22);
         if (filter[21]) {
-            c22.setChecked(filter[21]);
+            checkBox22.setChecked(filter[21]);
         }
-        c22.setOnClickListener(new View.OnClickListener() {
+        checkBox22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[21] = !filter[21];
             }
         });
 
-        c23 = (CheckBox) dialog.findViewById(R.id.checkbox_23);
+        checkBox23 = (CheckBox) dialog.findViewById(R.id.checkbox_23);
         if (filter[22]) {
-            c23.setChecked(filter[22]);
+            checkBox23.setChecked(filter[22]);
         }
-        c23.setOnClickListener(new View.OnClickListener() {
+        checkBox23.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[22] = !filter[22];
             }
         });
 
-        c24 = (CheckBox) dialog.findViewById(R.id.checkbox_24);
+        checkBox24 = (CheckBox) dialog.findViewById(R.id.checkbox_24);
         if (filter[23]) {
-            c24.setChecked(filter[23]);
+            checkBox24.setChecked(filter[23]);
         }
-        c24.setOnClickListener(new View.OnClickListener() {
+        checkBox24.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 filter[23] = !filter[23];
             }
         });
-
         dialog.show();
     }
 
@@ -659,7 +657,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     }
                 }
         );
-
         // Build the dialog and show it.
         AlertDialog fMapTypeDialog = builder.create();
         fMapTypeDialog.setCanceledOnTouchOutside(true);
@@ -865,7 +862,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                         locationItem.setLoc_open(object.getString("loc_open"));
                         locationItem.setLoc_close(object.getString("loc_close"));
                         LocationItem.locationItems.add(locationItem);
-
                     }
                 } else {
                     if (success.equals("NODATA")) {
@@ -876,8 +872,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
             return statusUrl;
         }
 
@@ -886,7 +880,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
 
@@ -905,7 +899,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             String[] data = marker.getTitle().split(",");
             String type = "";
 
-            switch(data[1]){
+            switch (data[1]) {
                 case "1":
                     type = "Airport";
                     break;
@@ -979,26 +973,23 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     type = "Work Place";
                     break;
             }
-            
-            TextView t1 = ((TextView) myContentsView.findViewById(R.id.text_1));
-            t1.setText(data[0]);
-            TextView t2 = ((TextView) myContentsView.findViewById(R.id.text_2));
-            t2.setText(type);
-            TextView t3 = ((TextView) myContentsView.findViewById(R.id.text_3));
-            t3.setText(data[2]);
-            TextView t4 = ((TextView) myContentsView.findViewById(R.id.text_4));
-            t4.setText(data[3]);
-            TextView t5 = ((TextView) myContentsView.findViewById(R.id.text_5));
-            t5.setText(data[4]);
-            TextView t6 = ((TextView) myContentsView.findViewById(R.id.tvOpen));
-            t6.setText(data[5]);
-            TextView t7 = ((TextView) myContentsView.findViewById(R.id.tvClose));
-            t7.setText(data[6]);
+
+            TextView textViewLocName = ((TextView) myContentsView.findViewById(R.id.tvLocName));
+            textViewLocName.setText(data[0]);
+            TextView textViewType = ((TextView) myContentsView.findViewById(R.id.tvType));
+            textViewType.setText(type);
+            TextView textViewTelephone = ((TextView) myContentsView.findViewById(R.id.tvTelephone));
+            textViewTelephone.setText(data[2]);
+            TextView textViewDescription = ((TextView) myContentsView.findViewById(R.id.tvDescription));
+            textViewDescription.setText(data[3]);
+            TextView textViewTimeCreate = ((TextView) myContentsView.findViewById(R.id.tvTimeCreate));
+            textViewTimeCreate.setText(data[4]);
+            TextView textViewTimeOpen = ((TextView) myContentsView.findViewById(R.id.tvOpen));
+            textViewTimeOpen.setText(data[5]);
+            TextView textViewTimeClose = ((TextView) myContentsView.findViewById(R.id.tvClose));
+            textViewTimeClose.setText(data[6]);
 
             return myContentsView;
         }
-
-
-
     }
 }
