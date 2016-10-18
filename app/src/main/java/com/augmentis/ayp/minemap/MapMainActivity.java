@@ -102,13 +102,15 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             }
         });
 
-        sendToDatabase();
-
         progress = new ProgressDialog(this);
         progress.setMessage("Loading...");
         progress.setIndeterminate(true);
         progress.setCancelable(false);
         progress.show();
+
+        sendToDatabase();
+
+        progress.dismiss();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -176,8 +178,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         Log.d(TAG, "Size of Location Item: " + LocationItem.locationItems.size());
 
         addMarker();
-
-        progress.dismiss();
     }
 
     @Override
@@ -915,7 +915,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     type = "Gas Station";
                     break;
                 case "10":
-                    type = "Goverment Office";
+                    type = "Government Office";
                     break;
                 case "11":
                     type = "Home";
