@@ -632,12 +632,15 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
             }
 
             Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(latLng).zoom(16).build();
+            if (addressList.get(0) == null) {
+            } else {
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(latLng).zoom(16).build();
 
-            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-            mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
         }
     }
 
