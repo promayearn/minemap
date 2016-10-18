@@ -309,9 +309,12 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                 addMarkerToGoogleMap(Integer.parseInt(LocationItem.locationItems.get(i).getLoc_type()),
                         Double.parseDouble(LocationItem.locationItems.get(i).getLoc_lat()),
                         Double.parseDouble(LocationItem.locationItems.get(i).getLoc_long()),
-                        LocationItem.locationItems.get(i).getLoc_name() + "," + LocationItem.locationItems.get(i).getLoc_type()
-                                + "," + LocationItem.locationItems.get(i).getLoc_tel() + "," + LocationItem.locationItems.get(i).getLoc_des()
-                                + "," + LocationItem.locationItems.get(i).getLoc_date() + "," + LocationItem.locationItems.get(i).getLoc_open()
+                        LocationItem.locationItems.get(i).getLoc_name()
+                                + "," + LocationItem.locationItems.get(i).getLoc_type()
+                                + "," + LocationItem.locationItems.get(i).getLoc_tel()
+                                + "," + LocationItem.locationItems.get(i).getLoc_des()
+                                + "," + LocationItem.locationItems.get(i).getLoc_date()
+                                + "," + LocationItem.locationItems.get(i).getLoc_open()
                                 + "," + LocationItem.locationItems.get(i).getLoc_close());
                 Log.d(TAG, "Add Marker");
             }
