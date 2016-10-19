@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail,
             inputPassword;
 
-    private TextInputLayout inputLayoutName,
+    protected TextInputLayout inputLayoutName,
             inputLayoutEmail,
             inputLayoutPassword;
 

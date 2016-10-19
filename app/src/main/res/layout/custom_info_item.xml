@@ -8,14 +8,20 @@
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="vertical">
 
         <View
-            android:id="@+id/view"
             android:layout_width="wrap_content"
-            android:layout_height="5dp"
+            android:layout_height="15dp"
             android:background="@color/colorControlActivated" />
+
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -154,11 +160,41 @@
             </LinearLayout>
         </LinearLayout>
 
-        <View
-            android:id="@+id/view1"
-            android:layout_width="wrap_content"
-            android:layout_height="5dp"
-            android:background="@color/colorControlActivated" />
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:text="@string/edit_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@color/colorControlActivated"
+                    android:textColor="@color/white"
+                    android:id="@+id/btn_edit"
+                    android:textSize="12sp"
+                    android:layout_weight="1" />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="0dp"/>
+
+                <Button
+                    android:text="@string/del_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@color/colorControlActivated"
+                    android:textColor="@color/white"
+                    android:id="@+id/btn_del"
+                    android:textSize="12sp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

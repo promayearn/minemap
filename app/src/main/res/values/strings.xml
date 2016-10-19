@@ -59,4 +59,6 @@
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+    <string name="edit_btn">Edit</string>
+    <string name="del_btn">Delete</string>
 </resources>
