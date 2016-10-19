@@ -36,7 +36,7 @@
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -47,15 +47,15 @@
             android:label="@string/title_activity_map" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".LoginActivity" />
+            android:parentActivityName=".LoginActivity"></activity>
         <activity
             android:name=".LocationDescription"
             android:label="@string/location_description"
-            android:parentActivityName=".MapRegisterActivity" />
+            android:parentActivityName=".MapRegisterActivity"></activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -66,7 +66,8 @@
 
         <activity
             android:name=".MapRegisterActivity"
-            android:parentActivityName=".MapMainActivity" />
+            android:parentActivityName=".MapMainActivity"></activity>
+
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -76,7 +77,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditDesActivity"></activity>
     </application>
 
 </manifest>
