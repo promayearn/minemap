@@ -5,9 +5,11 @@
     <color name="colorAccent">#00ACC1</color>
     <color name="colorControlActivated">#00ACC1</color>
 
+    <color name="black">#000000</color>
     <color name="gray">#E1E0DF</color>
     <color name="white_gray">#F3F2F2</color>
     <color name="white">#FFFFFF</color>
+    <color name="green">#3ADF00</color>
 
     <color name="bg_screen">#00ACC1</color>
     <color name="dot_dark_screen">#008597</color>

@@ -62,4 +62,8 @@
     <string name="edit_btn">Edit</string>
     <string name="del_btn">Delete</string>
     <string name="edit_page">Edit</string>
+    <string name="delete_location">Are you sure to delete this location?</string>
+    <string name="yes_btn">YES</string>
+    <string name="no_btn">NO</string>
+    <string name="edit_description">Edit Description</string>
 </resources>

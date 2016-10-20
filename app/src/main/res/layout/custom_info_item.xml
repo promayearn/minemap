@@ -21,22 +21,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:text="@string/hint_name"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_name"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvLocName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp" />
-
+                <TextView
+                    android:id="@+id/tvLocName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -77,12 +75,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvTelephone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp" />
-
-                <TextView
                     android:id="@+id/textView4"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
@@ -90,6 +82,11 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tvTelephone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -117,7 +114,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -144,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -174,7 +169,6 @@
                     android:layout_weight="1"
                     android:paddingLeft="5dp"
                     android:textSize="15sp" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -204,51 +198,17 @@
                     android:layout_weight="1"
                     android:paddingLeft="5dp"
                     android:textSize="15sp" />
-
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center"
-            android:padding="7dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:text="@string/edit_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@color/edit_btn"
-                    android:textColor="@color/white"
-                    android:id="@+id/btn_edit"
-                    android:textSize="12sp"
-                    android:layout_weight="1" />
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="0dp"/>
-
-                <Button
-                    android:text="@string/del_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:background="@color/del_btn"
-                    android:textColor="@color/white"
-                    android:id="@+id/btn_del"
-                    android:textSize="12sp"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-     </LinearLayout>
+            android:orientation="vertical"
+            android:padding="7dp"></LinearLayout>
     </LinearLayout>
+</LinearLayout>
 
 
 

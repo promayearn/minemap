@@ -79,6 +79,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
     private String mSearchKey;
     private String id_user;
     private String statusUrl;
+    private String[] data;
     private LocationItem locationItem;
 
     /**
@@ -145,7 +146,16 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
+                marker.setDraggable(false);
                 marker.hideInfoWindow();
+            }
+        });
+
+        mGoogleMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
+            @Override
+            public void onInfoWindowLongClick(Marker marker) {
+                data = marker.getTitle().split(",");
+                editDescriptionDialog(data);
             }
         });
 
@@ -316,7 +326,8 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                                 + "," + LocationItem.locationItems.get(i).getLoc_des()
                                 + "," + LocationItem.locationItems.get(i).getLoc_date()
                                 + "," + LocationItem.locationItems.get(i).getLoc_open()
-                                + "," + LocationItem.locationItems.get(i).getLoc_close());
+                                + "," + LocationItem.locationItems.get(i).getLoc_close()
+                                + "," + LocationItem.locationItems.get(i).getLoc_id());
                 Log.d(TAG, "Add Marker");
             }
         }
@@ -682,7 +693,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         MarkerOptions options = new MarkerOptions();
         options.position(new LatLng(lat, lng));
         options.title(title);
-        options.draggable(true).visible(true);
+        options.draggable(false).visible(true);
 
         if (type == 1 && !filter[0]) {
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_airplane));
@@ -807,6 +818,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         new sendToBackground().execute(id_user);
     }
 
+
     public class sendToBackground extends AsyncTask<String, String, String> {
 
         @Override
@@ -868,6 +880,83 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
+    private void confirmDialog() {
+
+        Button yButton;
+        Button nButton;
+
+        final Dialog dialog = new Dialog(MapMainActivity.this);
+        dialog.setContentView(R.layout.confirm_delete_dialog);
+        dialog.setTitle(R.string.delete_location);
+
+        yButton = (Button) dialog.findViewById(R.id.btn_yes);
+        yButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                deleteLocation(data[7]);
+                mGoogleMap.clear();
+                addMarker();
+            }
+        });
+
+        nButton = (Button) dialog.findViewById(R.id.btn_no);
+        nButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void editDescriptionDialog(String[] data) {
+
+        // loc_id in data[7]
+        final Dialog dialog = new Dialog(MapMainActivity.this);
+        dialog.setContentView(R.layout.edit_description_dialog);
+        dialog.setTitle(R.string.edit_description);
+
+        TextView editLocName = ((TextView) dialog.findViewById(R.id.edit_name));
+        editLocName.setText(data[0]);
+        TextView editTel = ((TextView) dialog.findViewById(R.id.edit_tel));
+        editTel.setText(data[2]);
+        TextView editOpen = ((TextView) dialog.findViewById(R.id.edit_open));
+        editOpen.setText(data[5]);
+        TextView editClose = ((TextView) dialog.findViewById(R.id.edit_close));
+        editClose.setText(data[6]);
+        TextView editDescription = ((TextView) dialog.findViewById(R.id.edit_description));
+        editDescription.setText(data[3]);
+
+        Button delSave = ((Button) dialog.findViewById(R.id.btn_del));
+        delSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDialog();
+                dialog.dismiss();
+            }
+        });
+
+        Button editSave = ((Button) dialog.findViewById(R.id.btn_save_edit));
+        editSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void editLocation(String data) {
+
+    }
+
+    private void deleteLocation(String loc_id) {
+        Log.d(TAG, "Loc Id: " + loc_id);
+    }
+
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
@@ -884,7 +973,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         @Override
         public View getInfoContents(Marker marker) {
 
-            String[] data = marker.getTitle().split(",");
+            data = marker.getTitle().split(",");
             String type = "";
 
             switch (data[1]) {
@@ -976,22 +1065,6 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             textViewTimeOpen.setText(data[5]);
             TextView textViewTimeClose = ((TextView) myContentsView.findViewById(R.id.tvClose));
             textViewTimeClose.setText(data[6]);
-
-            Button editButton = ((Button) myContentsView.findViewById(R.id.btn_edit));
-            editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
-            Button delButton = ((Button) myContentsView.findViewById(R.id.btn_del));
-            delButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
 
             return myContentsView;
         }
