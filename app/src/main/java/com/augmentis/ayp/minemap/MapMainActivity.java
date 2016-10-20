@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -711,7 +712,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_gas_station));
             mGoogleMap.addMarker(options);
         } else if (type == 10 && !filter[9]) {
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_goverment));
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_government));
             mGoogleMap.addMarker(options);
         } else if (type == 11 && !filter[10]) {
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_home));
@@ -915,7 +916,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                     type = "Gas Station";
                     break;
                 case "10":
-                    type = "Goverment Office";
+                    type = "Government Office";
                     break;
                 case "11":
                     type = "Home";
@@ -975,6 +976,22 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
             textViewTimeOpen.setText(data[5]);
             TextView textViewTimeClose = ((TextView) myContentsView.findViewById(R.id.tvClose));
             textViewTimeClose.setText(data[6]);
+
+            Button editButton = ((Button) myContentsView.findViewById(R.id.btn_edit));
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            Button delButton = ((Button) myContentsView.findViewById(R.id.btn_del));
+            delButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 
             return myContentsView;
         }

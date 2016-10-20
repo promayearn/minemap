@@ -231,7 +231,7 @@ public class MapRegisterActivity extends AppCompatActivity implements OnMapReady
                 bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.marker_gas_station);
                 break;
             case 10:
-                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.marker_goverment);
+                bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.marker_government);
                 break;
             case 11:
                 bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.marker_home);
