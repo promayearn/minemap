@@ -20,7 +20,7 @@
     <string name="btn_save">Save</string>
     <string name="location_description">Add Description</string>
     <string name="hint_date">Date</string>
-    <string name="hint_tel">Telephone</string>
+    <string name="hint_tel">Phone</string>
     <string name="hint_des">Description</string>
     <string name="next">Next</string>
     <string name="logout">Logout</string>
@@ -61,4 +61,5 @@
     <string name="play_again">Play Again</string>
     <string name="edit_btn">Edit</string>
     <string name="del_btn">Delete</string>
+    <string name="edit_page">Edit</string>
 </resources>

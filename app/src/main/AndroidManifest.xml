@@ -47,18 +47,18 @@
             android:label="@string/title_activity_map" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName=".LoginActivity"></activity>
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".LocationDescription"
             android:label="@string/location_description"
-            android:parentActivityName=".MapRegisterActivity"></activity>
+            android:parentActivityName=".MapRegisterActivity" />
         <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+            ATTENTION: This was auto-generated to add Google Play services to your project for
+            App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
         <meta-data
             android:name="com.google.android.gms.version"
@@ -66,8 +66,7 @@
 
         <activity
             android:name=".MapRegisterActivity"
-            android:parentActivityName=".MapMainActivity"></activity>
-
+            android:parentActivityName=".MapMainActivity" />
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -76,6 +75,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".EditDesActivity"
+            android:parentActivityName=".MapMainActivity"
+            android:label="@string/edit_page">
         </activity>
     </application>
 
