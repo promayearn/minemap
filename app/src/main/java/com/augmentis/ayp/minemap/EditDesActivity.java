@@ -26,7 +26,7 @@ public class EditDesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_des);
+        setContentView(R.layout.activity_edit_description);
 
 
         mineLocation = MineLocation.getInstance();
