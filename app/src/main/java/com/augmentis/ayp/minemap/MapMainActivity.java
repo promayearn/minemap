@@ -54,6 +54,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -69,18 +71,24 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
     private ProgressDialog progress;
     private GoogleMap mGoogleMap;
-    private UiSettings mUiSettings;
-    private LocationRequest mLocationRequest;
+    protected UiSettings mUiSettings;
+    protected LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
-    private FloatingActionButton mFloatButton;
+    protected FloatingActionButton mFloatButton;
     private boolean[] filter = new boolean[24];
 
-    private LatLng latLng;
+    protected LatLng latLng;
     private String mSearchKey;
     private String id_user;
     private String statusUrl;
     private String[] data;
-    private LocationItem locationItem;
+    protected LocationItem locationItem;
+
+    protected TextView editLocName;
+    protected TextView editTel;
+    protected TextView editOpen;
+    protected TextView editClose;
+    protected TextView editDescription;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -327,7 +335,9 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
                                 + "," + LocationItem.locationItems.get(i).getLoc_date()
                                 + "," + LocationItem.locationItems.get(i).getLoc_open()
                                 + "," + LocationItem.locationItems.get(i).getLoc_close()
-                                + "," + LocationItem.locationItems.get(i).getLoc_id());
+                                + "," + LocationItem.locationItems.get(i).getLoc_id()
+                                + "," + LocationItem.locationItems.get(i).getLoc_lat()
+                                + "," + LocationItem.locationItems.get(i).getLoc_long());
                 Log.d(TAG, "Add Marker");
             }
         }
@@ -911,22 +921,22 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         dialog.show();
     }
 
-    private void editDescriptionDialog(String[] data) {
+    private void editDescriptionDialog(final String[] data) {
 
         // loc_id in data[7]
         final Dialog dialog = new Dialog(MapMainActivity.this);
         dialog.setContentView(R.layout.edit_description_dialog);
         dialog.setTitle(R.string.edit_description);
 
-        TextView editLocName = ((TextView) dialog.findViewById(R.id.edit_name));
+        editLocName = ((TextView) dialog.findViewById(R.id.edit_name));
         editLocName.setText(data[0]);
-        TextView editTel = ((TextView) dialog.findViewById(R.id.edit_tel));
+        editTel = ((TextView) dialog.findViewById(R.id.edit_tel));
         editTel.setText(data[2]);
-        TextView editOpen = ((TextView) dialog.findViewById(R.id.edit_open));
+        editOpen = ((TextView) dialog.findViewById(R.id.edit_open));
         editOpen.setText(data[5]);
-        TextView editClose = ((TextView) dialog.findViewById(R.id.edit_close));
+        editClose = ((TextView) dialog.findViewById(R.id.edit_close));
         editClose.setText(data[6]);
-        TextView editDescription = ((TextView) dialog.findViewById(R.id.edit_description));
+        editDescription = ((TextView) dialog.findViewById(R.id.edit_description));
         editDescription.setText(data[3]);
 
         Button delSave = ((Button) dialog.findViewById(R.id.btn_del));
@@ -942,19 +952,136 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         editSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editLocation(data[7]);
                 dialog.dismiss();
+                mGoogleMap.clear();
+                addMarker();
             }
         });
 
         dialog.show();
     }
 
-    private void editLocation(String data) {
+    private void editLocation(String loc_id) {
+        Log.d(TAG, "Loc Id: " + loc_id);
 
+
+        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                java.util.Locale.getDefault());
+        Date date = new Date();
+
+        String loc_name = editLocName.getText().toString();
+        String loc_tel = editTel.getText().toString();
+        String loc_des = editDescription.getText().toString();
+        String loc_date = DateFormat.format(date);
+        String loc_open = editOpen.getText().toString();
+        String loc_close = editClose.getText().toString();
+        String loc_type = data[1];
+        String loc_lat = data[8];
+        String loc_long = data[9];
+
+
+        new sendToEdit().execute(loc_id, loc_name, loc_lat, loc_long, loc_type, loc_tel,
+                loc_des, loc_date, loc_open, loc_close);
     }
 
     private void deleteLocation(String loc_id) {
         Log.d(TAG, "Loc Id: " + loc_id);
+        new sendToDel().execute(loc_id);
+    }
+    public class sendToEdit extends AsyncTask<String, String, String> {
+
+        ProgressDialog loading;
+
+        @Override
+        protected String doInBackground(String... params) {
+            String loc_id = params[0];
+            String iduser = id_user;
+            String loc_name = params[1];
+            String loc_lat = params[2];
+            String loc_long = params[3];
+            String loc_type = params[4];
+            String loc_tel = params[5];
+            String loc_des = params[6];
+            String loc_date = params[7];
+            String loc_open = params[8];
+            String loc_close = params[9];
+
+            String url = "http://minemap.hol.es/edit_location.php?loc_id=" + loc_id + "&id_user=" + iduser
+                    + "&loc_name=" + loc_name + "&loc_lat=" + loc_lat + "&loc_long=" + loc_long + "&loc_type=" + loc_type
+                    + "&loc_tel=" + loc_tel + "&loc_des=" + loc_des + "&loc_date=" + loc_date + "&loc_open=" + loc_open
+                    + "&loc_close=" + loc_close;
+
+            JsonHttp jsonHttp = new JsonHttp();
+            String strJson = null;
+
+            try {
+
+                strJson = jsonHttp.getJSONUrl(url);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            statusUrl = strJson;
+
+            return statusUrl;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loading = ProgressDialog.show(MapMainActivity.this, "Save New Description", "Please wait...", true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(getApplicationContext(), "Save Success", Toast.LENGTH_LONG).show();
+            clearMarker();
+            loading.dismiss();
+            Intent i = new Intent(MapMainActivity.this, MapMainActivity.class);
+            startActivity(i);
+        }
+    }
+
+    public class sendToDel extends AsyncTask<String, String, String> {
+        ProgressDialog loading;
+
+        @Override
+        protected String doInBackground(String... params) {
+            String loc_id = params[0];
+            String url = "http://minemap.hol.es/del_location.php?loc_id=" + loc_id;
+
+            JsonHttp jsonHttp = new JsonHttp();
+            String strJson = null;
+
+            try {
+                strJson = jsonHttp.getJSONUrl(url);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            statusUrl = strJson;
+            return statusUrl;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loading = ProgressDialog.show(MapMainActivity.this, "Delete Location", "Please wait...", true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(getApplicationContext(), "Delete Success", Toast.LENGTH_LONG).show();
+            clearMarker();
+            loading.dismiss();
+            Intent i = new Intent(MapMainActivity.this, MapMainActivity.class);
+            startActivity(i);
+        }
     }
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
@@ -1068,5 +1195,9 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
 
             return myContentsView;
         }
+    }
+
+    public void clearMarker(){
+        LocationItem.locationItems.clear();
     }
 }

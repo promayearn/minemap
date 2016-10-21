@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.augmentis.ayp.minemap.model.LocationItem;
 import com.augmentis.ayp.minemap.model.MineLocation;
 import com.bumptech.glide.Glide;
 
@@ -145,4 +146,5 @@ public class LocationDescription extends AppCompatActivity {
 
         }
     }
+
 }
