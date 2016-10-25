@@ -5,6 +5,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="300dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:background="@color/colorControlActivated"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -178,9 +184,11 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="0">
 
                 <TextView
                     android:id="@+id/textView8"
@@ -199,19 +207,14 @@
                     android:paddingLeft="5dp"
                     android:textSize="15sp" />
             </LinearLayout>
+
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="300dp"
+            android:layout_height="5dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:padding="7dp"></LinearLayout>
+            android:background="@color/colorControlActivated"/>
     </LinearLayout>
 </LinearLayout>
-
-
-
-
-
-
