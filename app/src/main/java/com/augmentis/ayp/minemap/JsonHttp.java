@@ -6,10 +6,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by Apinya on 9/26/2016.
- */
-
 public class JsonHttp {
 
     private static String TAG = "JsonHttp";

@@ -1,9 +1,5 @@
 package com.augmentis.ayp.minemap.model;
 
-/**
- * Created by Chayanit on 9/30/2016.
- */
-
 public class MineLocation {
 
     private double latitude;

@@ -2,10 +2,6 @@ package com.augmentis.ayp.minemap.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Apinya on 10/4/2016.
- */
-
 public class LocationItem {
 
     public static ArrayList<LocationItem> locationItems = new ArrayList<LocationItem>();

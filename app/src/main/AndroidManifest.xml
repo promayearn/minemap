@@ -44,7 +44,13 @@
 
         <activity
             android:name=".MapMainActivity"
-            android:label="@string/title_activity_map" />
+            android:label="@string/title_activity_map">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -67,15 +73,6 @@
         <activity
             android:name=".MapRegisterActivity"
             android:parentActivityName=".MapMainActivity" />
-        <activity
-            android:name=".WelcomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".EditDesActivity"
             android:parentActivityName=".MapMainActivity"
             android:label="@string/edit_page">
